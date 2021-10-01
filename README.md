@@ -23,11 +23,11 @@
 2. `.zip`后缀为绿色版, 解压即可运行. 已包含最新AI引擎.
 
 ### 运行截图
-  1. ![1](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@latest/step/1.png)<br/>
-  2. ![2](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@latest/step/2.png)<br/>
-  3.![3](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@latest/step/3.png)<br/>
-  4.![4](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@latest/step/4.png)<br/>
-  5.![5](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@latest/step/5.png)<br/>
+  ![](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@master/step/1.png)<br/>
+  ![](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@master/step/2.png)<br/>
+  ![](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@master/step/3.png)<br/>
+  ![](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@master/step/4.png)<br/>
+  ![](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@master/step/5.png)<br/>
 
 ### 相关源码
 1. `Real-ESRGAN`源码: [https://github.com/xinntao/Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN)
