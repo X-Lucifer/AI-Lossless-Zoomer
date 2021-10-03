@@ -377,6 +377,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             // panelInfo
             // 
+            this.panelInfo.AllowDrop = true;
             this.panelInfo.AutoScroll = true;
             this.panelInfo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
             this.panelInfo.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
@@ -397,8 +398,8 @@ namespace X.Lucifer.LosslessZoom
             this.panelInfo.Style = Sunny.UI.UIStyle.Custom;
             this.panelInfo.StyleCustomMode = true;
             this.panelInfo.TabIndex = 0;
-            this.panelInfo.Text = null;
             this.panelInfo.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panelInfo.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelInfo_DragEnter);
             // 
             // uiLine1
             // 
@@ -608,7 +609,7 @@ namespace X.Lucifer.LosslessZoom
             this.ledTotaltime.Size = new System.Drawing.Size(154, 30);
             this.ledTotaltime.TabIndex = 39;
             this.ledTotaltime.TabStop = false;
-            this.ledTotaltime.Text = "00:00:00";
+            this.ledTotaltime.Text = "00:00";
             // 
             // ledStarttime
             // 
@@ -624,7 +625,7 @@ namespace X.Lucifer.LosslessZoom
             this.ledStarttime.Size = new System.Drawing.Size(154, 30);
             this.ledStarttime.TabIndex = 40;
             this.ledStarttime.TabStop = false;
-            this.ledStarttime.Text = "00:00:00";
+            this.ledStarttime.Text = "00:00";
             // 
             // lblxTotal
             // 

@@ -13,7 +13,6 @@ using System.Windows.Forms;
 using Sunny.UI;
 using TG.INI;
 using TG.INI.Serialization;
-using Timer = System.Threading.Timer;
 using XTimer = System.Timers.Timer;
 
 namespace X.Lucifer.LosslessZoom
@@ -21,6 +20,12 @@ namespace X.Lucifer.LosslessZoom
     public partial class FormMain : UIForm
     {
         private readonly string _outdir = AppContext.BaseDirectory + @"output\";
+        private readonly List<string> _formats = new()
+        {
+            ".jpg",
+            ".jpeg",
+            ".png"
+        };
         private readonly List<FileInfo> _files;
         private int _picid;
         private RuntimeOption _option;
@@ -44,17 +49,19 @@ namespace X.Lucifer.LosslessZoom
         private void FormMain_Load(object sender, EventArgs e)
         {
             FormClosed += FormMain_FormClosed;
+            panelInfo.DragDrop += async (_, x) => await panelInfo_DragDrop(x);
             timer.Tick += Timer_Tick;
             timer.Start();
-            Func<bool> checkengine = CheckEngine;
-            var isairesult = checkengine.BeginInvoke(null, null);
-            _isai = checkengine.EndInvoke(isairesult);
-            Action loadconfig = LoadConfig;
-            loadconfig.BeginInvoke(null, null);
-            Action loadmenu = LoadMenu;
-            loadmenu.BeginInvoke(null, null);
-            Action loadhard = LoadHardinfo;
-            loadhard.BeginInvoke(null, null);
+
+            Func<bool> fncheckengine = CheckEngine;
+            var fncresult = fncheckengine.BeginInvoke();
+            _isai = fncheckengine.EndInvoke(fncresult);
+            Action actloadcfg = LoadConfig;
+            actloadcfg.BeginInvoke();
+            Action actloadmenu = LoadMenu;
+            actloadmenu.BeginInvoke();
+            Action actloadhard = LoadHardInfo;
+            actloadhard.BeginInvoke();
             if (_isai)
             {
                 btnProcess.Click += btnProcess_Click;
@@ -102,7 +109,7 @@ namespace X.Lucifer.LosslessZoom
                     }
                 }
             };
-            action.BeginInvoke(null, null);
+            action.BeginInvoke();
         }
 
         /// <summary>
@@ -286,21 +293,40 @@ namespace X.Lucifer.LosslessZoom
                 return;
             }
 
+            await AddFiles(open.FileNames);
+        }
+
+        /// <summary>
+        /// 添加文件
+        /// </summary>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        private async Task AddFiles(IReadOnlyCollection<string> files)
+        {
+
             var ctotal = _files.Count;
-            var ftotal = ctotal + open.FileNames.Length;
-            if (open.FileNames.Length > 100 || ftotal > 100)
+            var ftotal = ctotal + files.Count;
+            if (files.Count > 100 || ftotal > 100)
             {
                 ShowInfoTip("总任务数量不能超过100");
                 return;
             }
 
-            btnProcess.Symbol = 361515;
-            btnProcess.Enabled = true;
-            btnCleartask.Enabled = true;
-            var current = _files.Count;
-            foreach (var item in open.FileNames)
+            btnProcess.BeginInvoke((Action)(() =>
             {
-                if (_files.Any(x => x.FullName.Equals(item, StringComparison.OrdinalIgnoreCase)))
+                btnProcess.Symbol = 361515;
+                btnProcess.Enabled = true;
+            }));
+            btnCleartask.BeginInvoke((Action)(() =>
+            {
+                btnCleartask.Enabled = true;
+            }));
+            var current = _files.Count;
+            foreach (var item in files)
+            {
+                if (_files.Any(x =>
+                    x.FullName.Equals(item, StringComparison.OrdinalIgnoreCase) ||
+                    !_formats.Any(z => z.Equals(x.Extension, StringComparison.OrdinalIgnoreCase))))
                 {
                     continue;
                 }
@@ -344,7 +370,8 @@ namespace X.Lucifer.LosslessZoom
                     Symbol = 61453,
                     Location = new Point(pic.Location.X + 80, pic.Location.Y)
                 };
-                btnclose.Click += Btnclose_Click; ;
+
+                btnclose.Click += Btnclose_Click;
                 pic.Controls.Add(btnclose);
                 pic.MouseHover += Pic_MouseHover;
                 pic.DoubleClick += Pic_DoubleClick;
@@ -369,15 +396,14 @@ namespace X.Lucifer.LosslessZoom
             {
                 return;
             }
-
-            var btnclose = (UISymbolButton)sender;
-            var pic = (PictureBox)btnclose.Parent;
-            var file = (FileInfo)pic.Tag;
+            var btnclose = (UISymbolButton) sender;
+            var pic = (PictureBox) btnclose.Parent;
+            var file = (FileInfo) pic.Tag;
             WriteLog($"移除任务: {file.Name}");
             _files.Remove(file);
+            panelInfo.Panel.Controls.Remove(pic);
             UpdateProgress();
             UpdateTaskCount(0, _files.Count);
-            panelInfo.Panel.Controls.Remove(pic);
             GC.Collect();
         }
 
@@ -412,7 +438,7 @@ namespace X.Lucifer.LosslessZoom
         {
             try
             {
-                var ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
+                const string ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
                 var sinfo = new ProcessStartInfo(ainame)
                 {
                     CreateNoWindow = true,
@@ -442,7 +468,7 @@ namespace X.Lucifer.LosslessZoom
         /// <summary>
         /// 加载硬件信息
         /// </summary>
-        private void LoadHardinfo()
+        private void LoadHardInfo()
         {
             WriteLog("初始化硬件信息.");
             LoadHardInfo("Win32_ComputerSystem", WmiType.WIN32_COMPUTER_SYSTEM, out var system);
@@ -455,24 +481,34 @@ namespace X.Lucifer.LosslessZoom
             WriteLog("加载其他信息成功.");
 
             //更新系统名称
-            void ActionUpdateSysname(string x) => lblxsysname.Text = x;
-            lblxsysname.BeginInvoke((Action<string>) ActionUpdateSysname, os["Caption"]?.ToString());
+            lblxsysname.BeginInvoke((Action<string>)(x =>
+            {
+                lblxsysname.Text = x;
+            }), os["Caption"]?.ToString());
 
             //更新处理器
-            void ActionUpdateProcessor(string x) => lblxprocessor.Text = x;
-            lblxprocessor.BeginInvoke((Action<string>) ActionUpdateProcessor, processor["Name"]?.ToString());
+            lblxprocessor.BeginInvoke((Action<string>)(x =>
+            {
+                lblxprocessor.Text = x;
+            }), processor["Name"]?.ToString());
 
             //更新物理核心
-            void ActionUpdateCpu(string x) => lblxcpu.Text = x;
-            lblxcpu.BeginInvoke((Action<string>) ActionUpdateCpu, processor["NumberOfCores"]?.ToString());
+            lblxcpu.BeginInvoke((Action<string>)(x =>
+            {
+                lblxcpu.Text = x;
+            }), processor["NumberOfCores"]?.ToString());
 
             //更新逻辑核心
-            void ActionUpdateCpulogic(string x) => lblxcpulogic.Text = x;
-            lblxcpulogic.BeginInvoke((Action<string>) ActionUpdateCpulogic, processor["NumberOfLogicalProcessors"]?.ToString());
+            lblxcpulogic.BeginInvoke((Action<string>)(x =>
+            {
+                lblxcpulogic.Text = x;
+            }), processor["NumberOfLogicalProcessors"]?.ToString());
 
             //更新显卡
-            void ActionUpdateVideo(string x) => lblxvideo.Text = x;
-            lblxvideo.BeginInvoke((Action<string>) ActionUpdateVideo, video["Caption"]?.ToString());
+            lblxvideo.BeginInvoke((Action<string>)(x =>
+            {
+                lblxvideo.Text = x;
+            }), video["Caption"]?.ToString());
 
             //更新品牌
             var sysfam = system["SystemFamily"]?.ToString();
@@ -481,8 +517,10 @@ namespace X.Lucifer.LosslessZoom
                 string.IsNullOrEmpty(sysfam) || sysfam.Equals("Default string", StringComparison.OrdinalIgnoreCase)
                     ? !string.IsNullOrEmpty(manufac) ? manufac : @"-"
                     : sysfam;
-            void ActionUpdateBrand(string x) => lblxbrand.Text = x;
-            lblxbrand.BeginInvoke((Action<string>) ActionUpdateBrand, brand);
+            lblxbrand.BeginInvoke((Action<string>)(x =>
+            {
+                lblxbrand.Text = x;
+            }), brand);
         }
 
         /// <summary>
@@ -537,28 +575,16 @@ namespace X.Lucifer.LosslessZoom
         /// <param name="isclear">是否清理</param>
         private void WriteLog(string txt, bool isclear = false)
         {
-            if (txtLog.InvokeRequired)
+            txtLog.BeginInvoke((Action<string, bool>)((x, y) =>
             {
-                while (!txtLog.IsHandleCreated)
-                {
-                    if (txtLog.IsDisposed || txtLog.Disposing)
-                    {
-                        return;
-                    }
-                }
-
-                Action<string, bool> action = WriteLog;
-                txtLog.BeginInvoke(action, txt, isclear);
-            }
-            else
-            {
-                if (isclear)
+                if (y)
                 {
                     txtLog.Text = string.Empty;
                 }
-                txtLog.AppendText($"{DateTime.Now:G}| {txt}{Environment.NewLine}");
+
+                txtLog.AppendText($"{DateTime.Now:G}| {x}{Environment.NewLine}");
                 txtLog.ScrollToCaret();
-            }
+            }), txt, isclear);
         }
 
         /// <summary>
@@ -568,41 +594,14 @@ namespace X.Lucifer.LosslessZoom
         /// <param name="total"></param>
         private void UpdateTaskCount(int current = 0, int total = 0)
         {
-            if (lblxFinished.InvokeRequired)
+            lblxFinished.BeginInvoke((Action<int>)(x =>
             {
-                while (!lblxFinished.IsHandleCreated)
-                {
-                    if (lblxFinished.IsDisposed || lblxFinished.Disposing)
-                    {
-                        return;
-                    }
-                }
-
-                Action<int, int> action = UpdateTaskCount;
-                lblxFinished.BeginInvoke(action, current, total);
-            }
-            else
+                lblxFinished.Text = x.ToString();
+            }), current);
+            lblxTotal.BeginInvoke((Action<int>)(x =>
             {
-                lblxFinished.Text = current.ToString();
-            }
-
-            if (lblxTotal.InvokeRequired)
-            {
-                while (!lblxTotal.IsHandleCreated)
-                {
-                    if (lblxTotal.IsDisposed || lblxTotal.Disposing)
-                    {
-                        return;
-                    }
-                }
-
-                Action<int, int> action = UpdateTaskCount;
-                lblxTotal.BeginInvoke(action, current, total);
-            }
-            else
-            {
-                lblxTotal.Text = total.ToString();
-            }
+                lblxTotal.Text = x.ToString();
+            }), total);
         }
 
         /// <summary>
@@ -612,34 +611,21 @@ namespace X.Lucifer.LosslessZoom
         /// <param name="total"></param>
         private void UpdateProgress(int current = 0, int total = 0)
         {
-            if (progressInfo.InvokeRequired)
+            progressInfo.BeginInvoke((Action<int, int>)((x, y) =>
             {
-                while (!progressInfo.IsHandleCreated)
-                {
-                    if (progressInfo.IsDisposed || progressInfo.Disposing)
-                    {
-                        return;
-                    }
-                }
-
-                Action<int, int> action = UpdateProgress;
-                progressInfo.BeginInvoke(action, current, total);
-            }
-            else
-            {
-                if (total <= 0 || current <= 0)
+                if (x <= 0 || y <= 0)
                 {
                     progressInfo.Value = 0;
                     progressInfo.Text = @"0.0%";
                 }
                 else
                 {
-                    var result = Convert.ToDecimal(current) / Convert.ToDecimal(total);
+                    var result = Convert.ToDecimal(x) / Convert.ToDecimal(y);
                     var percent = result.ToString("P2");
                     progressInfo.Value = Convert.ToInt32(result * 100);
                     progressInfo.Text = percent;
                 }
-            }
+            }), current, total);
         }
 
         /// <summary>
@@ -648,23 +634,10 @@ namespace X.Lucifer.LosslessZoom
         /// <param name="time"></param>
         private void UpdateStartTime(string time = "00:00")
         {
-            if (ledStarttime.InvokeRequired)
+            ledStarttime.BeginInvoke((Action<string>)(x =>
             {
-                while (!ledStarttime.IsHandleCreated)
-                {
-                    if (ledStarttime.IsDisposed || ledStarttime.Disposing)
-                    {
-                        return;
-                    }
-                }
-
-                Action<string> action = UpdateStartTime;
-                ledStarttime.BeginInvoke(action, time);
-            }
-            else
-            {
-                ledStarttime.Text = time;
-            }
+                ledStarttime.Text = x.ToString();
+            }), time);
         }
 
         /// <summary>
@@ -673,23 +646,10 @@ namespace X.Lucifer.LosslessZoom
         /// <param name="time"></param>
         private void UpdateTotalTime(string time = "00:00")
         {
-            if (ledTotaltime.InvokeRequired)
+            ledTotaltime.BeginInvoke((Action<string>)(x =>
             {
-                while (!ledTotaltime.IsHandleCreated)
-                {
-                    if (ledTotaltime.IsDisposed || ledTotaltime.Disposing)
-                    {
-                        return;
-                    }
-                }
-
-                Action<string> action = UpdateTotalTime;
-                ledTotaltime.BeginInvoke(action, time);
-            }
-            else
-            {
-                ledTotaltime.Text = time;
-            }
+                ledTotaltime.Text = x.ToString();
+            }), time);
         }
 
 
@@ -712,28 +672,22 @@ namespace X.Lucifer.LosslessZoom
                 {
                     Interval = 1000
                 };
-                totaltimer.Elapsed += (x, y) =>
+                totaltimer.Elapsed += (_, y) =>
                 {
                     var span = y.SignalTime - now;
                     UpdateTotalTime($"{span.Hours:00}:{span.Minutes:00}:{span.Seconds:00}");
                 };
                 totaltimer.Start();
                 _isrun = true;
-
-                void ActionProcesStart()
+                btnProcess.BeginInvoke((Action) (() =>
                 {
                     btnProcess.Symbol = 61516;
                     btnProcess.Enabled = false;
-                }
-                btnProcess.BeginInvoke((Action)ActionProcesStart, null);
+                }));
 
-                void ActionClearTaskStart()
-                {
-                    btnCleartask.Enabled = false;
-                }
-                btnCleartask.BeginInvoke((Action)ActionClearTaskStart, null);
+                btnCleartask.BeginInvoke((Action) (() => { btnCleartask.Enabled = false; }));
 
-                var ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
+                const string ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
                 var tasks = new List<Task>();
                 var semaphore = new SemaphoreSlim(0, 2);
                 WriteLog($"总任务数量: {_files.Count}");
@@ -777,8 +731,6 @@ namespace X.Lucifer.LosslessZoom
                                 RedirectStandardError = true,
                                 RedirectStandardOutput = true,
                                 RedirectStandardInput = true,
-                                StandardOutputEncoding = Encoding.UTF8,
-                                StandardErrorEncoding = Encoding.UTF8,
                                 WorkingDirectory = AppContext.BaseDirectory
                             };
                             using var process = new Process
@@ -829,18 +781,12 @@ namespace X.Lucifer.LosslessZoom
                 await Task.WhenAll(tasks);
                 if (tasks.TrueForAll(x => x.IsCompleted || x.IsCanceled || x.IsFaulted))
                 {
-                    void ActionProcesFinished()
+                    btnProcess.BeginInvoke((Action) (() =>
                     {
                         btnProcess.Symbol = 361515;
                         btnProcess.Enabled = true;
-                    }
-                    btnProcess.BeginInvoke((Action)ActionProcesFinished, null);
-
-                    void ActionClearTaskFinished()
-                    {
-                        btnCleartask.Enabled = true;
-                    }
-                    btnCleartask.BeginInvoke((Action)ActionClearTaskFinished, null);
+                    }));
+                    btnCleartask.BeginInvoke((Action) (() => { btnCleartask.Enabled = true; }));
 
                     _isrun = false;
                     WriteLog("任务完成");
@@ -848,16 +794,21 @@ namespace X.Lucifer.LosslessZoom
                     var total = _files.Count;
                     _processlist.Clear();
                     _files.Clear();
-                    panelInfo.Panel.Controls.Clear();
+                    panelInfo.BeginInvoke((Action) (() => { panelInfo.Panel.Controls.Clear(); }));
                     GC.Collect();
                     UpdateProgress(total, total);
                     UpdateTaskCount(total, total);
                     totaltimer.Stop();
                     totaltimer.Dispose();
                     WriteLog("清理已完成任务");
+                    Action actopenout = () =>
+                    {
+                        Process.Start(_option.OutDirPath);
+                    };
+                    actopenout.BeginInvoke();
                 }
             };
-            action.BeginInvoke(null, null);
+            action.BeginInvoke();
         }
 
         private void Process_Exited(object sender, EventArgs e)
@@ -908,9 +859,48 @@ namespace X.Lucifer.LosslessZoom
             _files.Clear();
             UpdateTaskCount();
             UpdateProgress();
-            panelInfo.Panel.Controls.Clear();
+            panelInfo.BeginInvoke((Action)(() =>
+            {
+                panelInfo.Panel.Controls.Clear();
+            }));
             GC.Collect();
             WriteLog("清空任务");
+        }
+
+        /// <summary>
+        /// 拖放文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void panelInfo_DragEnter(object sender, DragEventArgs e)
+        {
+            if (_isrun)
+            {
+                return;
+            }
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        /// <summary>
+        /// 拖放文件
+        /// </summary>
+        /// <param name="e"></param>
+        private async Task panelInfo_DragDrop(DragEventArgs e)
+        {
+            if (_isrun)
+            {
+                return;
+            }
+
+            var files = (string[]) e.Data.GetData(DataFormats.FileDrop);
+            var list = (from file in files
+                let ext = Path.GetExtension(file)
+                where _formats.Any(x => x.Equals(ext, StringComparison.OrdinalIgnoreCase))
+                select file).ToList();
+            await AddFiles(list);
         }
     }
 }
