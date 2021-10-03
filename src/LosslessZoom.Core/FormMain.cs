@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +14,7 @@ using TG.INI;
 using TG.INI.Serialization;
 using XTimer = System.Timers.Timer;
 
-namespace X.Lucifer.LosslessZoom
+namespace LosslessZoom.Core
 {
     public partial class FormMain : UIForm
     {
@@ -282,97 +281,7 @@ namespace X.Lucifer.LosslessZoom
             {
                 return;
             }
-
             await AddFiles(open.FileNames);
-        }
-
-        /// <summary>
-        /// 添加文件
-        /// </summary>
-        /// <param name="files"></param>
-        /// <returns></returns>
-        private async Task AddFiles(IReadOnlyCollection<string> files)
-        {
-
-            var ctotal = _files.Count;
-            var ftotal = ctotal + files.Count;
-            if (files.Count > 100 || ftotal > 100)
-            {
-                ShowInfoTip("总任务数量不能超过100");
-                return;
-            }
-
-            btnProcess.BeginInvoke((Action)(() =>
-            {
-                btnProcess.Symbol = 361515;
-                btnProcess.Enabled = true;
-            }));
-            btnCleartask.BeginInvoke((Action)(() =>
-            {
-                btnCleartask.Enabled = true;
-            }));
-            var current = _files.Count;
-            foreach (var item in files)
-            {
-                if (_files.Any(x =>
-                    x.FullName.Equals(item, StringComparison.OrdinalIgnoreCase) ||
-                    !_formats.Any(z => z.Equals(x.Extension, StringComparison.OrdinalIgnoreCase))))
-                {
-                    continue;
-                }
-
-                var file = new FileInfo(item);
-                WriteLog($"打开文件: {file.Name}");
-                _files.Add(file);
-                //动态加载图片
-                var pic = new PictureBox
-                {
-                    Text = file.Name,
-                    Name = $"pic_{_picid}",
-                    Image = Image.FromFile(file.FullName),
-                    Size = new Size(110, 110),
-                    BackgroundImageLayout = ImageLayout.Stretch,
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    WaitOnLoad = false,
-                    Tag = file
-                };
-                //动态创建移除按钮
-                var btnclose = new UISymbolButton
-                {
-                    Cursor = Cursors.Hand,
-                    FillColor = Color.FromArgb(230, 80, 80),
-                    BackColor = Color.Transparent,
-                    FillHoverColor = Color.FromArgb(232, 127, 128),
-                    FillPressColor = Color.FromArgb(202, 87, 89),
-                    FillSelectedColor = Color.FromArgb(202, 87, 89),
-                    Font = new Font("微软雅黑", 12F),
-                    IsCircle = true,
-                    MinimumSize = new Size(1, 1),
-                    Name = $"rem_{_picid}",
-                    Padding = new Padding(4, 7, 4, 4),
-                    RectColor = Color.FromArgb(230, 80, 80),
-                    RectHoverColor = Color.FromArgb(232, 127, 128),
-                    RectPressColor = Color.FromArgb(202, 87, 89),
-                    RectSelectedColor = Color.FromArgb(202, 87, 89),
-                    Size = new Size(30, 35),
-                    Style = UIStyle.Custom,
-                    StyleCustomMode = true,
-                    Symbol = 61453,
-                    Location = new Point(pic.Location.X + 80, pic.Location.Y)
-                };
-
-                btnclose.Click += Btnclose_Click;
-                pic.Controls.Add(btnclose);
-                pic.MouseHover += Pic_MouseHover;
-                pic.DoubleClick += Pic_DoubleClick;
-                panelInfo.Add(pic);
-                await Task.Delay(5);
-                current++;
-                UpdateTaskCount(0, current);
-                _picid++;
-            }
-
-            UpdateTaskCount(0, _files.Count);
         }
 
         /// <summary>
@@ -386,6 +295,7 @@ namespace X.Lucifer.LosslessZoom
             {
                 return;
             }
+
             var btnclose = (UISymbolButton) sender;
             var pic = (PictureBox) btnclose.Parent;
             var file = (FileInfo) pic.Tag;
@@ -428,7 +338,7 @@ namespace X.Lucifer.LosslessZoom
         {
             try
             {
-                const string ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
+                var ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
                 var sinfo = new ProcessStartInfo(ainame)
                 {
                     CreateNoWindow = true,
@@ -436,13 +346,11 @@ namespace X.Lucifer.LosslessZoom
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
                     RedirectStandardInput = true,
-                    StandardOutputEncoding = Encoding.GetEncoding("GB2312"),
-                    StandardErrorEncoding = Encoding.GetEncoding("GB2312"),
                     Verb = "runas",
                     Arguments = "-h",
                     WorkingDirectory = AppContext.BaseDirectory
                 };
-                using var process = new Process {StartInfo = sinfo, EnableRaisingEvents = true};
+                using var process = new Process { StartInfo = sinfo, EnableRaisingEvents = true };
                 var status = process.Start();
 
                 WriteLog(status ? "AI引擎加载成功." : "AI引擎加载失败.");
@@ -675,7 +583,10 @@ namespace X.Lucifer.LosslessZoom
                     btnProcess.Enabled = false;
                 }));
 
-                btnCleartask.BeginInvoke((Action)(() => { btnCleartask.Enabled = false; }));
+                btnCleartask.BeginInvoke((Action)(() =>
+                {
+                    btnCleartask.Enabled = false;
+                }));
 
                 const string ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
                 var tasks = new List<Task>();
@@ -737,7 +648,7 @@ namespace X.Lucifer.LosslessZoom
                             }
 
                             _processlist.Add(process.Id);
-                            process.WaitForExit();
+                            await process.WaitForExitAsync();
                             await Task.Delay(200);
                         }
                         catch (Exception ex)
@@ -771,12 +682,16 @@ namespace X.Lucifer.LosslessZoom
                 await Task.WhenAll(tasks);
                 if (tasks.TrueForAll(x => x.IsCompleted || x.IsCanceled || x.IsFaulted))
                 {
-                    btnProcess.BeginInvoke((Action)(() =>
+                    BeginInvoke((Action)(() =>
                     {
                         btnProcess.Symbol = 361515;
                         btnProcess.Enabled = true;
                     }));
-                    btnCleartask.BeginInvoke((Action)(() => { btnCleartask.Enabled = true; }));
+
+                    BeginInvoke((Action)(() =>
+                    {
+                        btnCleartask.Enabled = true;
+                    }));
 
                     _isrun = false;
                     WriteLog("任务完成");
@@ -784,7 +699,10 @@ namespace X.Lucifer.LosslessZoom
                     var total = _files.Count;
                     _processlist.Clear();
                     _files.Clear();
-                    panelInfo.BeginInvoke((Action)(() => { panelInfo.Panel.Controls.Clear(); }));
+                    BeginInvoke((Action)(() =>
+                    {
+                        panelInfo.Panel.Controls.Clear();
+                    }));
                     GC.Collect();
                     UpdateProgress(total, total);
                     UpdateTaskCount(total, total);
@@ -872,6 +790,95 @@ namespace X.Lucifer.LosslessZoom
         }
 
         /// <summary>
+        /// 添加文件
+        /// </summary>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        private async Task AddFiles(IReadOnlyCollection<string> files)
+        {
+            var ctotal = _files.Count;
+            var ftotal = ctotal + files.Count;
+            if (files.Count > 100 || ftotal > 100)
+            {
+                ShowInfoTip("总任务数量不能超过100");
+                return;
+            }
+
+            BeginInvoke((Action)(() =>
+            {
+                btnProcess.Symbol = 361515;
+                btnProcess.Enabled = true;
+            }));
+            BeginInvoke((Action)(() =>
+            {
+                btnCleartask.Enabled = true;
+            }));
+            var current = _files.Count;
+            foreach (var item in files)
+            {
+                if (_files.Any(x =>
+                    x.FullName.Equals(item, StringComparison.OrdinalIgnoreCase) ||
+                    !_formats.Any(z => z.Equals(x.Extension, StringComparison.OrdinalIgnoreCase))))
+                {
+                    continue;
+                }
+
+                var file = new FileInfo(item);
+                WriteLog($"打开文件: {file.Name}");
+                _files.Add(file);
+                //动态加载图片
+                var pic = new PictureBox
+                {
+                    Text = file.Name,
+                    Name = $"pic_{_picid}",
+                    Image = Image.FromFile(file.FullName),
+                    Size = new Size(110, 110),
+                    BackgroundImageLayout = ImageLayout.Stretch,
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    WaitOnLoad = false,
+                    Tag = file
+                };
+                //动态创建移除按钮
+                var btnclose = new UISymbolButton
+                {
+                    Cursor = Cursors.Hand,
+                    FillColor = Color.FromArgb(230, 80, 80),
+                    BackColor = Color.Transparent,
+                    FillHoverColor = Color.FromArgb(232, 127, 128),
+                    FillPressColor = Color.FromArgb(202, 87, 89),
+                    FillSelectedColor = Color.FromArgb(202, 87, 89),
+                    Font = new Font("微软雅黑", 12F),
+                    IsCircle = true,
+                    MinimumSize = new Size(1, 1),
+                    Name = $"rem_{_picid}",
+                    Padding = new Padding(4, 7, 4, 4),
+                    RectColor = Color.FromArgb(230, 80, 80),
+                    RectHoverColor = Color.FromArgb(232, 127, 128),
+                    RectPressColor = Color.FromArgb(202, 87, 89),
+                    RectSelectedColor = Color.FromArgb(202, 87, 89),
+                    Size = new Size(30, 35),
+                    Style = UIStyle.Custom,
+                    StyleCustomMode = true,
+                    Symbol = 61453,
+                    Location = new Point(pic.Location.X + 80, pic.Location.Y)
+                };
+
+                btnclose.Click += Btnclose_Click;
+                pic.Controls.Add(btnclose);
+                pic.MouseHover += Pic_MouseHover;
+                pic.DoubleClick += Pic_DoubleClick;
+                panelInfo.Add(pic);
+                await Task.Delay(5);
+                current++;
+                UpdateTaskCount(0, current);
+                _picid++;
+            }
+
+            UpdateTaskCount(0, _files.Count);
+        }
+
+
+        /// <summary>
         /// 拖放文件
         /// </summary>
         /// <param name="sender"></param>
@@ -899,7 +906,7 @@ namespace X.Lucifer.LosslessZoom
                 return;
             }
 
-            var files = (string[]) e.Data.GetData(DataFormats.FileDrop);
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
             var list = (from file in files
                 let ext = Path.GetExtension(file)
                 where _formats.Any(x => x.Equals(ext, StringComparison.OrdinalIgnoreCase))
