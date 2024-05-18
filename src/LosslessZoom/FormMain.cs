@@ -21,9 +21,6 @@ namespace X.Lucifer.LosslessZoom;
 
 public partial class FormMain : UIForm
 {
-    public delegate void ChangeLangEventHandler(ILangPack pack);
-
-    public event ChangeLangEventHandler OnChangeLang;
     private readonly PrivateFontCollection _fonts = new();
     private readonly string _outdir = AppContext.BaseDirectory + @"output\";
 
@@ -56,6 +53,7 @@ public partial class FormMain : UIForm
     /// </summary>
     private async Task FormMain_Load()
     {
+        this.ShowProcessForm();
         var font_bytes = Properties.Resources.fonts;
         unsafe
         {
@@ -66,19 +64,21 @@ public partial class FormMain : UIForm
         }
 
         uiStyleManager.GlobalFontName = _fonts.Families[0].Name;
+        await Task.Run(LoadConfig);
         FormClosed += async (_, _) => await FormMain_FormClosed();
         panelInfo.DragDrop += async (_, x) => await panelInfo_DragDrop(x);
         timer.Tick += Timer_Tick;
         timer.Start();
         _isai = await Task.FromResult(CheckEngine());
-        await Task.Run(LoadConfig);
         await Task.Run(LoadMenu);
         if (_isai)
         {
             btnProcess.Click += async (_, _) => await btnProcess_Click();
         }
 
+        Text = _pack.FormMain_Title;
         await Task.Run(LoadHardInfo);
+        this.HideProcessForm();
     }
 
     /// <summary>
@@ -161,8 +161,9 @@ public partial class FormMain : UIForm
         {
             _pack = new LangPackEnglish();
         }
-
-        WriteLog("初始化配置成功.");
+        SetLanguage(_option.Lang);
+        LoadUiLang(_pack);
+        WriteLog(_pack.FormMain_Init_Config);
     }
 
     /// <summary>
@@ -176,9 +177,9 @@ public partial class FormMain : UIForm
                 new TreeNode
                 (
                     "", [
-                        new TreeNode("打开(O)"),
-                        new TreeNode("选项(S)"),
-                        new TreeNode("退出(X)")
+                        new TreeNode(_pack.FormMain_OpenFile),
+                        new TreeNode(_pack.FormMain_Options),
+                        new TreeNode(_pack.FormMain_Exit)
                     ]
                 ),
                 new TreeNode("", [
@@ -188,8 +189,8 @@ public partial class FormMain : UIForm
                 new TreeNode
                 (
                     "", [
-                        new TreeNode("关于(A)"),
-                        new TreeNode("版权(C)")
+                        new TreeNode(_pack.FormMain_About),
+                        new TreeNode(_pack.FormMain_Copyright)
                     ]
                 )
             ]
@@ -224,7 +225,7 @@ public partial class FormMain : UIForm
         }
 
         navbarMenu.MenuItemClick += async (_, _, index) => await NavbarMenu_MenuItemClick(index);
-        WriteLog("加载菜单成功.");
+        WriteLog(_pack.FormMain_Init_Menu);
     }
 
 
@@ -246,7 +247,7 @@ public partial class FormMain : UIForm
                 }
                 else
                 {
-                    this.ShowErrorTip("AI引擎加载失败");
+                    this.ShowErrorTip(_pack.FormMain_Engine_Fail);
                 }
 
                 break;
@@ -274,19 +275,37 @@ public partial class FormMain : UIForm
         if (lang == Language.Chinese)
         {
             _pack = new LangPack();
-            this.ShowInfoTip("当前界面语言已切换至中文");
+            this.ShowInfoTip(_pack.FormMain_Change_Lang);
         }
         else
         {
             _pack = new LangPackEnglish();
-            this.ShowInfoTip("The current UI language has been switched to English.");
+            this.ShowInfoTip(_pack.FormMain_Change_Lang);
         }
 
         _option.Lang = lang;
         using var doc = IniSerialization.SerializeObjectToNewDocument(_option);
         var file = AppContext.BaseDirectory + "config.ini";
         doc.Write(file);
-        OnChangeLang?.Invoke(_pack);
+        Application.Restart();
+    }
+
+    private void LoadUiLang(ILangPack lang)
+    {
+        Text = lang.FormMain_Title;
+        lblVideoname.Text = lang.FormMain_lblVideoname;
+        lblCpuLogic.Text = lang.FormMain_lblCpuLogic;
+        lblCpu.Text = lang.FormMain_lblCpu;
+        lblProcessor.Text = lang.FormMain_lblProcessor;
+        lblBrand.Text = lang.FormMain_lblBrand;
+        lblSysname.Text = lang.FormMain_lblSysname;
+        btnProcess.Text = lang.FormMain_btnProcess;
+        btnClearlog.Text = lang.FormMain_btnClearlog;
+        btnCleartask.Text = lang.FormMain_btnCleartask;
+        lblTaskAll.Text = lang.FormMain_lblTaskAll;
+        lblTaskRemain.Text = lang.FormMain_lblTaskRemain;
+        lblTotaltime.Text = lang.FormMain_lblTotaltime;
+        lblStart.Text = lang.FormMain_lblStart;
     }
 
     /// <summary>
@@ -335,7 +354,7 @@ public partial class FormMain : UIForm
         _option.Module = xoption.Module;
         _option.OutFormat = xoption.OutFormat;
         _option.OutDirPath = xoption.OutDirPath;
-        WriteLog("配置更改成功.");
+        WriteLog(_pack.FormMain_Change_Config);
     }
 
     /// <summary>
@@ -376,7 +395,7 @@ public partial class FormMain : UIForm
         var ftotal = ctotal + files.Count;
         if (files.Count > 100 || ftotal > 100)
         {
-            this.ShowInfoTip("总任务数量不能超过100");
+            this.ShowInfoTip(_pack.FormMain_Log_Add_File_Error);
             return;
         }
 
@@ -397,7 +416,7 @@ public partial class FormMain : UIForm
             }
 
             var file = new FileInfo(item);
-            WriteLog($"打开文件: {file.Name}");
+            WriteLog($"{_pack.FormMain_Log_Open_File} {file.Name}");
             _files.Add(file);
             //动态加载图片
             var pic = new PictureBox
@@ -465,7 +484,7 @@ public partial class FormMain : UIForm
         var btnclose = (UISymbolButton)sender;
         var pic = (PictureBox)btnclose.Parent;
         var file = (FileInfo)pic.Tag;
-        WriteLog($"移除任务: {file.Name}");
+        WriteLog($"{_pack.FormMain_Remove_Task} {file.Name}");
         _files.Remove(file);
         panelInfo.Panel.Controls.Remove(pic);
         UpdateProgress();
@@ -481,7 +500,7 @@ public partial class FormMain : UIForm
     private void Pic_MouseHover(object sender, EventArgs e)
     {
         var pic = (PictureBox)sender;
-        tooltipPic.SetToolTip(pic, pic.Text, "文件名", 61530, 32, UIColor.Green);
+        tooltipPic.SetToolTip(pic, pic.Text, _pack.FormMain_File_Name, 61530, 32, UIColor.Green);
     }
 
     /// <summary>
@@ -492,7 +511,7 @@ public partial class FormMain : UIForm
     private void Pic_DoubleClick(object sender, EventArgs e)
     {
         var pic = (PictureBox)sender;
-        var form = new FormViewPic(pic);
+        var form = new FormViewPic(pic, _pack);
         form.ShowDialog(this);
     }
 
@@ -523,12 +542,12 @@ public partial class FormMain : UIForm
             process.EnableRaisingEvents = true;
             var status = process.Start();
 
-            WriteLog(status ? "AI引擎加载成功." : "AI引擎加载失败.");
+            WriteLog(status ? _pack.FormMain_Init_Engine : _pack.FormMain_Engine_Fail);
             return status;
         }
         catch (Exception e)
         {
-            WriteLog($"AI引擎加载失败: {e.Message}");
+            WriteLog($"{_pack.FormMain_Engine_Fail} {e.Message}");
             return false;
         }
     }
@@ -538,15 +557,15 @@ public partial class FormMain : UIForm
     /// </summary>
     private void LoadHardInfo()
     {
-        WriteLog("初始化硬件信息.");
+        WriteLog(_pack.FormMain_Init_Hard_Info);
         LoadHardInfo("Win32_ComputerSystem", WmiType.WIN32_COMPUTER_SYSTEM, out var system);
-        WriteLog("加载系统信息成功.");
+        WriteLog(_pack.FormMain_Init_System_Info);
         LoadHardInfo("Win32_Processor", WmiType.WIN32_PROCESSOR, out var processor);
-        WriteLog("加载处理器信息成功.");
+        WriteLog(_pack.FormMain_Init_Cpu_Info);
         LoadHardInfo("Win32_VideoController", WmiType.WIN32_VIDEO_CONTROLLER, out var video);
-        WriteLog("加载显卡信息成功.");
+        WriteLog(_pack.FormMain_Init_Graphics_Info);
         LoadHardInfo("Win32_OperatingSystem", WmiType.WIN32_OPERATING_SYSTEM, out var os);
-        WriteLog("加载其他信息成功.");
+        WriteLog(_pack.FormMain_Init_Others_Info);
 
         //更新系统名称
         lblxsysname.BeginInvoke((Action<string>)(x => { lblxsysname.Text = x; }), os["Caption"]?.ToString());
@@ -633,7 +652,7 @@ public partial class FormMain : UIForm
                 txtLog.Text = string.Empty;
             }
 
-            txtLog.AppendText($"{DateTime.Now:G}| {x}{Environment.NewLine}");
+            txtLog.AppendText($"[{DateTime.Now:G}] | {x}{Environment.NewLine}");
             txtLog.ScrollToCaret();
         }), txt, isclear);
     }
@@ -740,7 +759,7 @@ public partial class FormMain : UIForm
             }
 
             var semaphore = new SemaphoreSlim(0, cpus);
-            WriteLog($"总任务数量: {_files.Count}");
+            WriteLog($"{_pack.FormMain_All_Task_Count} {_files.Count}");
             var remain = _files.Count;
             UpdateTaskCount(0, remain);
             UpdateProgress(0, remain);
@@ -755,9 +774,9 @@ public partial class FormMain : UIForm
             };
             var tasks = _files.Select(xitem => Task.Run(async () =>
                 {
-                    WriteLog($"任务: {xitem.Name}, 已添加, 等待执行.");
+                    WriteLog($"{_pack.FormMain_Task} {xitem.Name}{_pack.FormMain_Wait_Execute_Task}");
                     await semaphore.WaitAsync();
-                    WriteLog($"任务: {xitem.Name}, 已开始执行.");
+                    WriteLog($"{_pack.FormMain_Task} {xitem.Name}{_pack.FormMain_Start_Execute_Task}");
                     try
                     {
                         var xname = xitem.NameWithoutExt();
@@ -800,17 +819,18 @@ public partial class FormMain : UIForm
                     }
                     catch (Exception ex)
                     {
-                        WriteLog($"任务: {xitem.Name}, 异常消息: {ex.Message}");
+                        WriteLog($"{_pack.FormMain_Task} {xitem.Name}, {_pack.FormMain_Exception} {ex.Message}");
                     }
                     finally
                     {
-                        WriteLog($"任务: {xitem.Name}, 已完成.");
+                        WriteLog($"{_pack.FormMain_Task} {xitem.Name}, {_pack.FormMain_Has_Finished}");
                         if (remain > 0)
                         {
                             remain--;
                         }
 
-                        WriteLog($"总任务数量: {_files.Count}, 剩余数量: {remain}");
+                        WriteLog(
+                            $"{_pack.FormMain_All_Task_Count} {_files.Count}, {_pack.FormMain_Remain_Task_Count} {remain}");
                         var current = _files.Count - remain;
                         UpdateTaskCount(current, _files.Count);
                         UpdateProgress(current, _files.Count);
@@ -824,7 +844,7 @@ public partial class FormMain : UIForm
                 await Task.Delay(500);
             } while (tasks.Count < _files.Count);
 
-            WriteLog("任务开始.");
+            WriteLog(_pack.FormMain_Task_Start);
             semaphore.Release(cpus);
 
             await Task.WhenAll(tasks);
@@ -838,7 +858,7 @@ public partial class FormMain : UIForm
                 btnCleartask.BeginInvoke(() => { btnCleartask.Enabled = true; });
 
                 _isrun = false;
-                WriteLog("任务完成");
+                WriteLog(_pack.FormMain_Task_Finished);
                 _picid = 0;
                 var total = _files.Count;
                 _processlist.Clear();
@@ -849,7 +869,7 @@ public partial class FormMain : UIForm
                 UpdateTaskCount(total, total);
                 totaltimer.Stop();
                 totaltimer.Dispose();
-                WriteLog("清理已完成任务");
+                WriteLog(_pack.FormMain_Clear_Finished_Task);
                 await Task.Run(() =>
                 {
                     var sinfo = new ProcessStartInfo
@@ -936,7 +956,7 @@ public partial class FormMain : UIForm
     /// <param name="e"></param>
     private void btnClearlog_Click(object sender, EventArgs e)
     {
-        WriteLog("清空日志", true);
+        WriteLog(_pack.FormMain_Clear_Logs, true);
         GC.Collect();
     }
 
@@ -959,7 +979,7 @@ public partial class FormMain : UIForm
         UpdateProgress();
         panelInfo.BeginInvoke(() => { panelInfo.Panel.Controls.Clear(); });
         GC.Collect();
-        WriteLog("清空任务");
+        WriteLog(_pack.FormMain_Clear_All_Task);
     }
 
     /// <summary>

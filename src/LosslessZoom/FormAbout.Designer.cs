@@ -144,7 +144,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblCopyright.Size = new System.Drawing.Size(70, 23);
             this.lblCopyright.Style = Sunny.UI.UIStyle.Custom;
             this.lblCopyright.TabIndex = 1;
-            this.lblCopyright.Text = "版权信息:";
             this.lblCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblAuthor
@@ -157,7 +156,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblAuthor.Size = new System.Drawing.Size(70, 23);
             this.lblAuthor.Style = Sunny.UI.UIStyle.Custom;
             this.lblAuthor.TabIndex = 1;
-            this.lblAuthor.Text = "软件主页:";
             this.lblAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblVersion
@@ -170,7 +168,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblVersion.Size = new System.Drawing.Size(70, 23);
             this.lblVersion.Style = Sunny.UI.UIStyle.Custom;
             this.lblVersion.TabIndex = 1;
-            this.lblVersion.Text = "当前版本:";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblDesc
@@ -183,7 +180,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblDesc.Size = new System.Drawing.Size(70, 23);
             this.lblDesc.Style = Sunny.UI.UIStyle.Custom;
             this.lblDesc.TabIndex = 1;
-            this.lblDesc.Text = "功能说明:";
             this.lblDesc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTitle
@@ -197,7 +193,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblTitle.Style = Sunny.UI.UIStyle.Custom;
             this.lblTitle.StyleCustomMode = true;
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "AI Lossless Zoomer";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FormAbout
@@ -213,7 +208,6 @@ namespace X.Lucifer.LosslessZoom
             this.Name = "FormAbout";
             this.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
             this.Style = Sunny.UI.UIStyle.Custom;
-            this.Text = "关于";
             this.TextAlignment = System.Drawing.StringAlignment.Center;
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 372, 314);

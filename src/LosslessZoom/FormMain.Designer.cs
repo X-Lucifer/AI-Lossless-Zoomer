@@ -78,7 +78,7 @@ namespace X.Lucifer.LosslessZoom
             this.navbarMenu.DropDownItemAutoHeight = true;
             this.navbarMenu.DropMenuFont = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.navbarMenu.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.navbarMenu.Location = new System.Drawing.Point(0, 5);
+            this.navbarMenu.Location = new System.Drawing.Point(0, 6);
             this.navbarMenu.Margin = new System.Windows.Forms.Padding(5);
             this.navbarMenu.MenuSelectedColorUsed = true;
             this.navbarMenu.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
@@ -215,7 +215,7 @@ namespace X.Lucifer.LosslessZoom
             this.txtLog.ScrollBarStyleInherited = false;
             this.txtLog.ShortcutsEnabled = false;
             this.txtLog.ShowText = false;
-            this.txtLog.Size = new System.Drawing.Size(484, 239);
+            this.txtLog.Size = new System.Drawing.Size(460, 239);
             this.txtLog.Style = Sunny.UI.UIStyle.Custom;
             this.txtLog.StyleCustomMode = true;
             this.txtLog.TabIndex = 1;
@@ -225,9 +225,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblVideoname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblVideoname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblVideoname.Location = new System.Drawing.Point(25, 561);
+            this.lblVideoname.Location = new System.Drawing.Point(23, 561);
             this.lblVideoname.Name = "lblVideoname";
-            this.lblVideoname.Size = new System.Drawing.Size(69, 23);
+            this.lblVideoname.Size = new System.Drawing.Size(82, 23);
             this.lblVideoname.Style = Sunny.UI.UIStyle.Custom;
             this.lblVideoname.StyleCustomMode = true;
             this.lblVideoname.TabIndex = 25;
@@ -238,9 +238,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblCpuLogic.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblCpuLogic.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblCpuLogic.Location = new System.Drawing.Point(25, 519);
+            this.lblCpuLogic.Location = new System.Drawing.Point(23, 519);
             this.lblCpuLogic.Name = "lblCpuLogic";
-            this.lblCpuLogic.Size = new System.Drawing.Size(69, 23);
+            this.lblCpuLogic.Size = new System.Drawing.Size(82, 23);
             this.lblCpuLogic.Style = Sunny.UI.UIStyle.Custom;
             this.lblCpuLogic.StyleCustomMode = true;
             this.lblCpuLogic.TabIndex = 25;
@@ -251,9 +251,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblCpu.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblCpu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblCpu.Location = new System.Drawing.Point(25, 477);
+            this.lblCpu.Location = new System.Drawing.Point(23, 477);
             this.lblCpu.Name = "lblCpu";
-            this.lblCpu.Size = new System.Drawing.Size(69, 23);
+            this.lblCpu.Size = new System.Drawing.Size(82, 23);
             this.lblCpu.Style = Sunny.UI.UIStyle.Custom;
             this.lblCpu.StyleCustomMode = true;
             this.lblCpu.TabIndex = 25;
@@ -264,9 +264,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblProcessor.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblProcessor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblProcessor.Location = new System.Drawing.Point(38, 435);
+            this.lblProcessor.Location = new System.Drawing.Point(23, 435);
             this.lblProcessor.Name = "lblProcessor";
-            this.lblProcessor.Size = new System.Drawing.Size(56, 23);
+            this.lblProcessor.Size = new System.Drawing.Size(82, 23);
             this.lblProcessor.Style = Sunny.UI.UIStyle.Custom;
             this.lblProcessor.StyleCustomMode = true;
             this.lblProcessor.TabIndex = 25;
@@ -277,9 +277,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblBrand.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblBrand.Location = new System.Drawing.Point(25, 393);
+            this.lblBrand.Location = new System.Drawing.Point(23, 393);
             this.lblBrand.Name = "lblBrand";
-            this.lblBrand.Size = new System.Drawing.Size(69, 23);
+            this.lblBrand.Size = new System.Drawing.Size(82, 23);
             this.lblBrand.Style = Sunny.UI.UIStyle.Custom;
             this.lblBrand.StyleCustomMode = true;
             this.lblBrand.TabIndex = 25;
@@ -290,9 +290,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblSysname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblSysname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblSysname.Location = new System.Drawing.Point(25, 351);
+            this.lblSysname.Location = new System.Drawing.Point(23, 351);
             this.lblSysname.Name = "lblSysname";
-            this.lblSysname.Size = new System.Drawing.Size(69, 23);
+            this.lblSysname.Size = new System.Drawing.Size(82, 23);
             this.lblSysname.Style = Sunny.UI.UIStyle.Custom;
             this.lblSysname.StyleCustomMode = true;
             this.lblSysname.TabIndex = 25;
@@ -303,7 +303,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblxsysname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblxsysname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblxsysname.Location = new System.Drawing.Point(111, 351);
+            this.lblxsysname.Location = new System.Drawing.Point(113, 351);
             this.lblxsysname.Name = "lblxsysname";
             this.lblxsysname.Size = new System.Drawing.Size(334, 23);
             this.lblxsysname.Style = Sunny.UI.UIStyle.Custom;
@@ -316,7 +316,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblxbrand.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblxbrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblxbrand.Location = new System.Drawing.Point(111, 393);
+            this.lblxbrand.Location = new System.Drawing.Point(113, 393);
             this.lblxbrand.Name = "lblxbrand";
             this.lblxbrand.Size = new System.Drawing.Size(334, 23);
             this.lblxbrand.Style = Sunny.UI.UIStyle.Custom;
@@ -329,7 +329,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblxprocessor.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblxprocessor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblxprocessor.Location = new System.Drawing.Point(111, 435);
+            this.lblxprocessor.Location = new System.Drawing.Point(113, 435);
             this.lblxprocessor.Name = "lblxprocessor";
             this.lblxprocessor.Size = new System.Drawing.Size(334, 23);
             this.lblxprocessor.Style = Sunny.UI.UIStyle.Custom;
@@ -342,7 +342,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblxcpu.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblxcpu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblxcpu.Location = new System.Drawing.Point(111, 477);
+            this.lblxcpu.Location = new System.Drawing.Point(113, 477);
             this.lblxcpu.Name = "lblxcpu";
             this.lblxcpu.Size = new System.Drawing.Size(334, 23);
             this.lblxcpu.Style = Sunny.UI.UIStyle.Custom;
@@ -355,7 +355,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblxcpulogic.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblxcpulogic.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblxcpulogic.Location = new System.Drawing.Point(111, 519);
+            this.lblxcpulogic.Location = new System.Drawing.Point(113, 519);
             this.lblxcpulogic.Name = "lblxcpulogic";
             this.lblxcpulogic.Size = new System.Drawing.Size(334, 23);
             this.lblxcpulogic.Style = Sunny.UI.UIStyle.Custom;
@@ -368,7 +368,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblxvideo.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblxvideo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblxvideo.Location = new System.Drawing.Point(111, 561);
+            this.lblxvideo.Location = new System.Drawing.Point(113, 561);
             this.lblxvideo.Name = "lblxvideo";
             this.lblxvideo.Size = new System.Drawing.Size(334, 23);
             this.lblxvideo.Style = Sunny.UI.UIStyle.Custom;
@@ -555,9 +555,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblTaskAll.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblTaskAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblTaskAll.Location = new System.Drawing.Point(666, 611);
+            this.lblTaskAll.Location = new System.Drawing.Point(664, 611);
             this.lblTaskAll.Name = "lblTaskAll";
-            this.lblTaskAll.Size = new System.Drawing.Size(64, 23);
+            this.lblTaskAll.Size = new System.Drawing.Size(74, 23);
             this.lblTaskAll.Style = Sunny.UI.UIStyle.Custom;
             this.lblTaskAll.StyleCustomMode = true;
             this.lblTaskAll.TabIndex = 34;
@@ -568,9 +568,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblTaskRemain.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblTaskRemain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblTaskRemain.Location = new System.Drawing.Point(666, 646);
+            this.lblTaskRemain.Location = new System.Drawing.Point(664, 646);
             this.lblTaskRemain.Name = "lblTaskRemain";
-            this.lblTaskRemain.Size = new System.Drawing.Size(64, 23);
+            this.lblTaskRemain.Size = new System.Drawing.Size(74, 23);
             this.lblTaskRemain.Style = Sunny.UI.UIStyle.Custom;
             this.lblTaskRemain.StyleCustomMode = true;
             this.lblTaskRemain.TabIndex = 34;
@@ -581,7 +581,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblTotaltime.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblTotaltime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblTotaltime.Location = new System.Drawing.Point(388, 647);
+            this.lblTotaltime.Location = new System.Drawing.Point(385, 647);
             this.lblTotaltime.Name = "lblTotaltime";
             this.lblTotaltime.Size = new System.Drawing.Size(81, 23);
             this.lblTotaltime.Style = Sunny.UI.UIStyle.Custom;
@@ -594,7 +594,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblStart.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblStart.Location = new System.Drawing.Point(388, 612);
+            this.lblStart.Location = new System.Drawing.Point(385, 612);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(81, 23);
             this.lblStart.Style = Sunny.UI.UIStyle.Custom;
@@ -672,7 +672,7 @@ namespace X.Lucifer.LosslessZoom
             this.AllowAddControlOnTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.ClientSize = new System.Drawing.Size(944, 679);
+            this.ClientSize = new System.Drawing.Size(945, 694);
             this.CloseAskString = "";
             this.Controls.Add(this.lblxFinished);
             this.Controls.Add(this.lblxTotal);
@@ -714,7 +714,6 @@ namespace X.Lucifer.LosslessZoom
             this.Name = "FormMain";
             this.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.Style = Sunny.UI.UIStyle.Custom;
-            this.Text = "AI无损放大工具";
             this.TextAlignment = System.Drawing.StringAlignment.Center;
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 944, 679);

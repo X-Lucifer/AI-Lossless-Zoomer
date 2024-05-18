@@ -39,7 +39,7 @@ static class Program
 
     private static void ShowError(string msg)
     {
-        var form = new FormError
+        using var form = new FormError
         {
             Message = msg
         };

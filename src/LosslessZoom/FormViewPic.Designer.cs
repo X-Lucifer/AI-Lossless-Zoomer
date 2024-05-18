@@ -84,7 +84,6 @@ namespace X.Lucifer.LosslessZoom
             this.ShowRadius = false;
             this.ShowShadow = true;
             this.Style = Sunny.UI.UIStyle.Custom;
-            this.Text = "预览";
             this.TextAlignment = System.Drawing.StringAlignment.Center;
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
             this.Load += new System.EventHandler(this.FormViewPic_Load);

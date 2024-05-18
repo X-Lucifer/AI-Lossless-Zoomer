@@ -9,15 +9,18 @@ namespace X.Lucifer.LosslessZoom;
 /// </summary>
 public partial class FormViewPic : UIForm
 {
+    private readonly ILangPack _pack;
     private readonly PictureBox _pic;
-    public FormViewPic(PictureBox pic)
+    public FormViewPic(PictureBox pic, ILangPack pack)
     {
         _pic = pic;
+        _pack = pack;
         InitializeComponent();
     }
 
     private void FormViewPic_Load(object sender, EventArgs e)
     {
+        Text = _pack.FormViewPic_Title;
         var pic = new PictureBox
         {
             Image = _pic.Image,

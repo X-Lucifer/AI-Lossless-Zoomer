@@ -91,6 +91,13 @@ public partial class FormOption : UIEditForm
                 Name = "WebP"
             }
         };
+        Text = _pack.FormOption_Title;
+        lblAppendExt.Text = _pack.FormOption_lblAppendExt;
+        lblModule.Text = _pack.FormOption_lblModule;
+        lblFormat.Text = _pack.FormOption_lblFormat;
+        lblOutDir.Text = _pack.FormOption_lblOutDir;
+        rbDefault.Text = _pack.FormOption_rbDefault;
+        rbManual.Text = _pack.FormOption_rbManual;
         cbxFormat.DisplayMember = nameof(ComboxItem.Name);
         cbxFormat.ValueMember = nameof(ComboxItem.Id);
         cbxFormat.DataSource = flist;
@@ -118,6 +125,7 @@ public partial class FormOption : UIEditForm
         {
             btnBrowser.Visible = true;
             txtOutDir.Visible = true;
+            txtOutDir.BeginInvoke((Action<string>)(x => { txtOutDir.Text = x.ToString(); }), _option.OutDirPath);
         }
     }
 
@@ -133,13 +141,15 @@ public partial class FormOption : UIEditForm
         {
             outdir += @"\";
         }
+
         var config = new RuntimeOption
         {
             AppendExt = regex.Replace(ext, ""),
             Module = cbxModule.SelectedValue.ToString(),
             OutDir = rbDefault.Checked ? 1 : 2,
             OutDirPath = outdir,
-            OutFormat = cbxFormat.SelectedIndex
+            OutFormat = cbxFormat.SelectedIndex,
+            Lang = _option.Lang
         };
         var file = AppContext.BaseDirectory + "config.ini";
         var doc = IniSerialization.SerializeObjectToNewDocument(config);
@@ -147,20 +157,24 @@ public partial class FormOption : UIEditForm
         {
             File.Delete(file);
         }
+
         doc.Write(file);
         if (OnSaved != null)
         {
             var roe = new RuntimeOptionEventArgs(config);
             OnSaved(this, roe);
         }
+
         Close();
     }
 
     private void btnBrowser_Click(object sender, EventArgs e)
     {
-        using var dialog = new FolderBrowserDialog();
+        var dialog = new FolderBrowserDialog();
         dialog.ShowNewFolderButton = true;
+        dialog.Description = _pack.FormOption_btnBrowser;
         var result = dialog.ShowDialog(this);
-        txtOutDir.Text = result == DialogResult.OK ? dialog.SelectedPath : _option.OutDirPath;
+        var path = result == DialogResult.OK ? dialog.SelectedPath : _option.OutDirPath;
+        txtOutDir.BeginInvoke((Action<string>)(x => { txtOutDir.Text = x.ToString(); }), path);
     }
 }

@@ -77,7 +77,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblAppendExt.Size = new System.Drawing.Size(100, 23);
             this.lblAppendExt.Style = Sunny.UI.UIStyle.Custom;
             this.lblAppendExt.TabIndex = 2;
-            this.lblAppendExt.Text = "文件后缀:";
             this.lblAppendExt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblModule
@@ -89,7 +88,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblModule.Size = new System.Drawing.Size(100, 23);
             this.lblModule.Style = Sunny.UI.UIStyle.Custom;
             this.lblModule.TabIndex = 2;
-            this.lblModule.Text = "引擎模块:";
             this.lblModule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblFormat
@@ -101,7 +99,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblFormat.Size = new System.Drawing.Size(100, 23);
             this.lblFormat.Style = Sunny.UI.UIStyle.Custom;
             this.lblFormat.TabIndex = 2;
-            this.lblFormat.Text = "输出格式:";
             this.lblFormat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblOutDir
@@ -113,7 +110,6 @@ namespace X.Lucifer.LosslessZoom
             this.lblOutDir.Size = new System.Drawing.Size(100, 23);
             this.lblOutDir.Style = Sunny.UI.UIStyle.Custom;
             this.lblOutDir.TabIndex = 2;
-            this.lblOutDir.Text = "输出目录:";
             this.lblOutDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtAppendExt
@@ -179,7 +175,6 @@ namespace X.Lucifer.LosslessZoom
             this.rbDefault.Style = Sunny.UI.UIStyle.Custom;
             this.rbDefault.TabIndex = 6;
             this.rbDefault.Tag = "1";
-            this.rbDefault.Text = "默认目录";
             // 
             // rbManual
             // 
@@ -194,7 +189,6 @@ namespace X.Lucifer.LosslessZoom
             this.rbManual.Style = Sunny.UI.UIStyle.Custom;
             this.rbManual.TabIndex = 7;
             this.rbManual.Tag = "2";
-            this.rbManual.Text = "指定目录";
             // 
             // btnBrowser
             // 
@@ -294,7 +288,6 @@ namespace X.Lucifer.LosslessZoom
             this.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.ShowInTaskbar = true;
             this.Style = Sunny.UI.UIStyle.Custom;
-            this.Text = "选项";
             this.TextAlignment = System.Drawing.StringAlignment.Center;
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.Load += new System.EventHandler(this.FormOption_Load);
