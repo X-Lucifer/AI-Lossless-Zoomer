@@ -1,17 +1,29 @@
 ﻿using System;
+using Sunny.UI;
 
-namespace X.Lucifer.LosslessZoom
+namespace X.Lucifer.LosslessZoom;
+
+public static class ApiExtensions
 {
-    public static class ApiExtensions
+    public static IAsyncResult BeginInvoke(this Action action)
     {
-        public static IAsyncResult BeginInvoke(this Action action)
-        {
-            return action.BeginInvoke(null, null);
-        }
+        return action.BeginInvoke(null, null);
+    }
 
-        public static IAsyncResult BeginInvoke(this Func<bool> func)
+    public static IAsyncResult BeginInvoke(this Func<bool> func)
+    {
+        return func.BeginInvoke(null, null);
+    }
+
+    public static void SetLanguage(Language lang = Language.Chinese)
+    {
+        if (lang == Language.Chinese)
         {
-            return func.BeginInvoke(null, null);
+            UILocalizeHelper.SetCH();
+        }
+        else
+        {
+            UILocalizeHelper.SetEN();
         }
     }
 }

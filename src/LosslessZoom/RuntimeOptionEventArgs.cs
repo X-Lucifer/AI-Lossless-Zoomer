@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace X.Lucifer.LosslessZoom
+namespace X.Lucifer.LosslessZoom;
+
+public class RuntimeOptionEventArgs(RuntimeOption option) : EventArgs
 {
-    public class RuntimeOptionEventArgs(RuntimeOption option) : EventArgs
-    {
-        public RuntimeOption Option { get;} = option;
-    }
+    public RuntimeOption Option { get;} = option;
 }

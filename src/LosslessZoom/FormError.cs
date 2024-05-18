@@ -1,26 +1,25 @@
 ﻿using System;
 using Sunny.UI;
 
-namespace X.Lucifer.LosslessZoom
+namespace X.Lucifer.LosslessZoom;
+
+/// <summary>
+/// 异常
+/// </summary>
+public partial class FormError : UIForm
 {
     /// <summary>
-    /// 异常
+    /// 错误消息
     /// </summary>
-    public partial class FormError : UIForm
+    public string Message { get; set; }
+
+    public FormError()
     {
-        /// <summary>
-        /// 错误消息
-        /// </summary>
-        public string Message { get; set; }
+        InitializeComponent();
+    }
 
-        public FormError()
-        {
-            InitializeComponent();
-        }
-
-        private void FormError_Load(object sender, EventArgs e)
-        {
-            txtError.Text = Message ?? "";
-        }
+    private void FormError_Load(object sender, EventArgs e)
+    {
+        txtError.Text = Message ?? "";
     }
 }
