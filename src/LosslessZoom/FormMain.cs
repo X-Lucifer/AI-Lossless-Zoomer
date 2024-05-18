@@ -12,7 +12,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
-using Sunny.UI.Win32;
 using TG.INI;
 using TG.INI.Serialization;
 using XTimer = System.Timers.Timer;
@@ -745,70 +744,70 @@ namespace X.Lucifer.LosslessZoom
                     _ => "realesrgan-x4plus"
                 };
                 var tasks = _files.Select(xitem => Task.Run(async () =>
+                {
+                    WriteLog($"任务: {xitem.Name}, 已添加, 等待执行.");
+                    await semaphore.WaitAsync();
+                    WriteLog($"任务: {xitem.Name}, 已开始执行.");
+                    try
                     {
-                        WriteLog($"任务: {xitem.Name}, 已添加, 等待执行.");
-                        await semaphore.WaitAsync();
-                        WriteLog($"任务: {xitem.Name}, 已开始执行.");
-                        try
+                        var xname = xitem.NameWithoutExt();
+                        if (!string.IsNullOrEmpty(_option.AppendExt))
                         {
-                            var xname = xitem.NameWithoutExt();
-                            if (!string.IsNullOrEmpty(_option.AppendExt))
-                            {
-                                xname += _option.AppendExt;
-                            }
-
-                            var format = _option.OutFormat switch
-                            {
-                                2 => ".png",
-                                3 => ".webp",
-                                _ => ".jpg"
-                            };
-                            var cmd =
-                                $" -i \"{xitem.FullName}\" -o \"{_option.OutDirPath}{xname}{format}\" -n {module} -f {format.Replace(".", "")} -s 4 -g auto -j {thread} -v ";
-                            var sinfo = new ProcessStartInfo(ainame, cmd)
-                            {
-                                CreateNoWindow = true,
-                                UseShellExecute = false,
-                                RedirectStandardError = true,
-                                RedirectStandardOutput = true,
-                                RedirectStandardInput = true,
-                                WorkingDirectory = AppContext.BaseDirectory
-                            };
-                            using var process = new Process();
-                            process.StartInfo = sinfo;
-                            process.EnableRaisingEvents = true;
-                            process.OutputDataReceived += Process_OutputDataReceived;
-                            process.Exited += Process_Exited;
-                            var isstart = process.Start();
-                            if (!isstart)
-                            {
-                                return;
-                            }
-
-                            _processlist.Add(process.Id);
-                            process.WaitForExit();
-                            await Task.Delay(200);
+                            xname += _option.AppendExt;
                         }
-                        catch (Exception ex)
+
+                        var format = _option.OutFormat switch
                         {
-                            WriteLog($"任务: {xitem.Name}, 异常消息: {ex.Message}");
-                        }
-                        finally
+                            2 => ".png",
+                            3 => ".webp",
+                            _ => ".jpg"
+                        };
+                        var cmd =
+                            $" -i \"{xitem.FullName}\" -o \"{_option.OutDirPath}{xname}{format}\" -n {module} -f {format.Replace(".", "")} -s 4 -g auto -j {thread} -v ";
+                        var sinfo = new ProcessStartInfo(ainame, cmd)
                         {
-                            WriteLog($"任务: {xitem.Name}, 已完成.");
-                            if (remain > 0)
-                            {
-                                remain--;
-                            }
-
-                            WriteLog($"总任务数量: {_files.Count}, 剩余数量: {remain}");
-                            var current = _files.Count - remain;
-                            UpdateTaskCount(current, _files.Count);
-                            UpdateProgress(current, _files.Count);
-                            semaphore.Release(1);
+                            CreateNoWindow = true,
+                            UseShellExecute = false,
+                            RedirectStandardError = true,
+                            RedirectStandardOutput = true,
+                            RedirectStandardInput = true,
+                            WorkingDirectory = AppContext.BaseDirectory
+                        };
+                        using var process = new Process();
+                        process.StartInfo = sinfo;
+                        process.EnableRaisingEvents = true;
+                        process.OutputDataReceived += Process_OutputDataReceived;
+                        process.Exited += Process_Exited;
+                        var isstart = process.Start();
+                        if (!isstart)
+                        {
+                            return;
                         }
-                    }))
-                    .ToList();
+
+                        _processlist.Add(process.Id);
+                        process.WaitForExit();
+                        await Task.Delay(200);
+                    }
+                    catch (Exception ex)
+                    {
+                        WriteLog($"任务: {xitem.Name}, 异常消息: {ex.Message}");
+                    }
+                    finally
+                    {
+                        WriteLog($"任务: {xitem.Name}, 已完成.");
+                        if (remain > 0)
+                        {
+                            remain--;
+                        }
+
+                        WriteLog($"总任务数量: {_files.Count}, 剩余数量: {remain}");
+                        var current = _files.Count - remain;
+                        UpdateTaskCount(current, _files.Count);
+                        UpdateProgress(current, _files.Count);
+                        semaphore.Release(1);
+                    }
+                }))
+                .ToList();
 
                 do
                 {
@@ -860,11 +859,10 @@ namespace X.Lucifer.LosslessZoom
                         process.Start();
                     });
                 }
-                semaphore.Dispose();
             });
         }
 
-        private string GetThread(int cpus)
+        private static string GetThread(int cpus)
         {
             string result;
             if (cpus % 3 == 0)
