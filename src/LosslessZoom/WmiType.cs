@@ -1,4 +1,5 @@
-﻿namespace X.Lucifer.LosslessZoom
+﻿// ReSharper disable InconsistentNaming
+namespace X.Lucifer.LosslessZoom
 {
     /// <summary>
     /// WMIType

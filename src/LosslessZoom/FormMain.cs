@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Management;
@@ -11,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
+using Sunny.UI.Win32;
 using TG.INI;
 using TG.INI.Serialization;
 using XTimer = System.Timers.Timer;
@@ -19,25 +21,26 @@ namespace X.Lucifer.LosslessZoom
 {
     public partial class FormMain : UIForm
     {
+        private readonly PrivateFontCollection _fonts = new();
         private readonly string _outdir = AppContext.BaseDirectory + @"output\";
-        private readonly List<string> _formats = new()
-        {
+        private readonly List<string> _formats =
+        [
             ".jpg",
             ".jpeg",
             ".png"
-        };
+        ];
         private readonly List<FileInfo> _files;
         private int _picid;
         private RuntimeOption _option;
-        private bool _isai;
         private readonly List<int> _processlist;
+        private bool _isai;
         private bool _isrun;
 
         public FormMain()
         {
-            _processlist = new List<int>();
+            _processlist = [];
             _option = new RuntimeOption();
-            _files = new List<FileInfo>();
+            _files = [];
             InitializeComponent();
             Load += async (_, _) => await FormMain_Load();
         }
@@ -47,6 +50,16 @@ namespace X.Lucifer.LosslessZoom
         /// </summary>
         private async Task FormMain_Load()
         {
+            var font_bytes = Properties.Resources.fonts;
+            unsafe
+            {
+                fixed (byte* fontdata = font_bytes)
+                {
+                    _fonts.AddMemoryFont((IntPtr)fontdata, font_bytes.Length);
+                }
+            }
+
+            uiStyleManager.GlobalFontName = _fonts.Families[0].Name;
             FormClosed += async (_, _) => await FormMain_FormClosed();
             panelInfo.DragDrop += async (_, x) => await panelInfo_DragDrop(x);
             timer.Tick += Timer_Tick;
@@ -54,11 +67,11 @@ namespace X.Lucifer.LosslessZoom
             _isai = await Task.FromResult(CheckEngine());
             await Task.Run(LoadConfig);
             await Task.Run(LoadMenu);
-            await Task.Run(LoadHardInfo);
             if (_isai)
             {
                 btnProcess.Click += async (_, _) => await btnProcess_Click();
             }
+            await Task.Run(LoadHardInfo);
         }
 
         /// <summary>
@@ -87,6 +100,7 @@ namespace X.Lucifer.LosslessZoom
                         foreach (var item in _processlist)
                         {
                             using var process = Process.GetProcessById(item);
+                            process.Close();
                             process.Kill();
                         }
                     }
@@ -140,72 +154,97 @@ namespace X.Lucifer.LosslessZoom
         /// </summary>
         private void LoadMenu()
         {
-            navbarMenu.Nodes.AddRange(new[]
-            {
-                new TreeNode("文件(F)",new[]
-                {
-                    new TreeNode("打开(O)"),
-                    new TreeNode("选项(S)"),
-                    new TreeNode("退出(X)")
-                }),
-                new TreeNode("帮助(H)",new[]
-                {
-                    new TreeNode("关于(A)"),
-                    new TreeNode("版权(C)")
-                })
-            });
+            navbarMenu.Nodes.AddRange
+            (
+                [
+                    new TreeNode
+                    (
+                        "", [
+                            new TreeNode("打开(O)"),
+                            new TreeNode("选项(S)"),
+                            new TreeNode("退出(X)")
+                        ]
+                    ),
+                    new TreeNode("", [
+                        new TreeNode("CN"),
+                        new TreeNode("EN")
+                    ]),
+                    new TreeNode
+                    (
+                        "", [
+                            new TreeNode("关于(A)"),
+                            new TreeNode("版权(C)")
+                        ]
+                    )
+                ]
+            );
+            var topindex = 1;
+            var navindex = 1;
             foreach (TreeNode item in navbarMenu.Nodes)
             {
+                switch (topindex)
+                {
+                    case 1:
+                        navbarMenu.SetNodeSymbol(item, 561534, 35);
+                        break;
+                    case 2:
+                        navbarMenu.SetNodeSymbol(item, 559540, 35);
+                        break;
+                    case 3:
+                        navbarMenu.SetNodeSymbol(item, 559527, 35);
+                        break;
+                }
+
                 foreach (TreeNode xitem in item.Nodes)
                 {
-                    navbarMenu.SetNodeItem(xitem, new NavMenuItem(xitem.Text, xitem.Index));
+                    xitem.ForeColor = Color.FromArgb(40, 44, 52);
+                    xitem.BackColor = Color.FromArgb(40, 44, 52);
+                    navbarMenu.SetNodePageIndex(xitem, navindex);
+                    navbarMenu.Nodes.Add(xitem);
+                    navindex++;
                 }
+
+                topindex++;
             }
 
-            navbarMenu.MenuItemClick += async (_, x, y) => await NavbarMenu_MenuItemClick(x, y);
+            navbarMenu.MenuItemClick += async (_, _, index) => await NavbarMenu_MenuItemClick(index);
             WriteLog("加载菜单成功.");
         }
+
 
         /// <summary>
         /// 菜单事件处理
         /// </summary>
         /// <param name="index">索引</param>
-        /// <param name="page">页码</param>
-        private async Task NavbarMenu_MenuItemClick(int index, int page)
+        private async Task NavbarMenu_MenuItemClick(int index)
         {
             switch (index)
             {
-                case 0:
-                    switch (page)
+                case 1:
+                    await OpenFiles();
+                    break;
+                case 2:
+                    if (_isai)
                     {
-                        case 0:
-                            await OpenFiles();
-                            break;
-                        case 1:
-                            if (_isai)
-                            {
-                                ShowOption();
-                            }
-                            else
-                            {
-                                ShowErrorTip("AI引擎加载失败");
-                            }
-                            break;
-                        case 2:
-                            await Exit();
-                            break;
+                        ShowOption();
+                    }
+                    else
+                    {
+                        this.ShowErrorTip("AI引擎加载失败");
                     }
                     break;
-                case 1:
-                    switch (page)
-                    {
-                        case 0:
-                            ShowAbout();
-                            break;
-                        case 1:
-                            ShowCopyright();
-                            break;
-                    }
+                case 3:
+                    await Exit();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    ShowAbout();
+                    break;
+                case 7:
+                    ShowCopyright();
                     break;
             }
         }
@@ -293,24 +332,23 @@ namespace X.Lucifer.LosslessZoom
         /// <returns></returns>
         private async Task AddFiles(IReadOnlyCollection<string> files)
         {
-
             var ctotal = _files.Count;
             var ftotal = ctotal + files.Count;
             if (files.Count > 100 || ftotal > 100)
             {
-                ShowInfoTip("总任务数量不能超过100");
+                this.ShowInfoTip("总任务数量不能超过100");
                 return;
             }
 
-            btnProcess.BeginInvoke((Action)(() =>
+            btnProcess.BeginInvoke(() =>
             {
                 btnProcess.Symbol = 361515;
                 btnProcess.Enabled = true;
-            }));
-            btnCleartask.BeginInvoke((Action)(() =>
+            });
+            btnCleartask.BeginInvoke(() =>
             {
                 btnCleartask.Enabled = true;
-            }));
+            });
             var current = _files.Count;
             foreach (var item in files)
             {
@@ -358,7 +396,7 @@ namespace X.Lucifer.LosslessZoom
                     Style = UIStyle.Custom,
                     StyleCustomMode = true,
                     Symbol = 61453,
-                    Location = new Point(pic.Location.X + 80, pic.Location.Y)
+                    Location = pic.Location with {X = pic.Location.X + 80}
                 };
 
                 btnclose.Click += Btnclose_Click;
@@ -442,7 +480,9 @@ namespace X.Lucifer.LosslessZoom
                     Arguments = "-h",
                     WorkingDirectory = AppContext.BaseDirectory
                 };
-                using var process = new Process {StartInfo = sinfo, EnableRaisingEvents = true};
+                using var process = new Process();
+                process.StartInfo = sinfo;
+                process.EnableRaisingEvents = true;
                 var status = process.Start();
 
                 WriteLog(status ? "AI引擎加载成功." : "AI引擎加载失败.");
@@ -554,7 +594,7 @@ namespace X.Lucifer.LosslessZoom
             }
             catch (Exception)
             {
-                info = new Hashtable();
+                info = new();
             }
         }
 
@@ -669,31 +709,42 @@ namespace X.Lucifer.LosslessZoom
                 };
                 totaltimer.Start();
                 _isrun = true;
-                btnProcess.BeginInvoke((Action)(() =>
+                btnProcess.BeginInvoke(() =>
                 {
                     btnProcess.Symbol = 61516;
                     btnProcess.Enabled = false;
-                }));
+                });
 
-                btnCleartask.BeginInvoke((Action)(() => { btnCleartask.Enabled = false; }));
+                btnCleartask.BeginInvoke(() => { btnCleartask.Enabled = false; });
 
                 const string ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
-                var tasks = new List<Task>();
-                var semaphore = new SemaphoreSlim(0, 2);
+                var cpus = Convert.ToInt32(Environment.ProcessorCount / 2);
+                if (cpus <= 2)
+                {
+                    cpus = 2;
+                }
+
+                var thread = "1:2:2";
+                if (cpus >= 6)
+                {
+                    thread = GetThread(cpus);
+                }
+
+                var semaphore = new SemaphoreSlim(0, cpus);
                 WriteLog($"总任务数量: {_files.Count}");
                 var remain = _files.Count;
                 UpdateTaskCount(0, remain);
-                UpdateProgress();
+                UpdateProgress(0, remain);
                 var module = _option.Module switch
                 {
-                    "1" => "realesrnet-x4plus",
+                    "1" => "realesrgan-x4plus",
                     "2" => "realesrgan-x4plus-anime",
+                    "3" => "realesr-animevideov3-x2",
+                    "4" => "realesr-animevideov3-x3",
+                    "5" => "realesr-animevideov3-x4",
                     _ => "realesrgan-x4plus"
                 };
-                foreach (var item in _files)
-                {
-                    var xitem = item;
-                    tasks.Add(Task.Run(async () =>
+                var tasks = _files.Select(xitem => Task.Run(async () =>
                     {
                         WriteLog($"任务: {xitem.Name}, 已添加, 等待执行.");
                         await semaphore.WaitAsync();
@@ -713,7 +764,7 @@ namespace X.Lucifer.LosslessZoom
                                 _ => ".jpg"
                             };
                             var cmd =
-                                $" -i \"{xitem.FullName}\" -o \"{_option.OutDirPath}{xname}{format}\" -n {module} -f {format.Replace(".", "")} -s 4 -g auto -j 2:2:2 -v ";
+                                $" -i \"{xitem.FullName}\" -o \"{_option.OutDirPath}{xname}{format}\" -n {module} -f {format.Replace(".", "")} -s 4 -g auto -j {thread} -v ";
                             var sinfo = new ProcessStartInfo(ainame, cmd)
                             {
                                 CreateNoWindow = true,
@@ -723,11 +774,9 @@ namespace X.Lucifer.LosslessZoom
                                 RedirectStandardInput = true,
                                 WorkingDirectory = AppContext.BaseDirectory
                             };
-                            using var process = new Process
-                            {
-                                StartInfo = sinfo,
-                                EnableRaisingEvents = true
-                            };
+                            using var process = new Process();
+                            process.StartInfo = sinfo;
+                            process.EnableRaisingEvents = true;
                             process.OutputDataReceived += Process_OutputDataReceived;
                             process.Exited += Process_Exited;
                             var isstart = process.Start();
@@ -756,10 +805,10 @@ namespace X.Lucifer.LosslessZoom
                             var current = _files.Count - remain;
                             UpdateTaskCount(current, _files.Count);
                             UpdateProgress(current, _files.Count);
-                            semaphore.Release();
+                            semaphore.Release(1);
                         }
-                    }));
-                }
+                    }))
+                    .ToList();
 
                 do
                 {
@@ -767,16 +816,17 @@ namespace X.Lucifer.LosslessZoom
                 } while (tasks.Count < _files.Count);
 
                 WriteLog("任务开始.");
-                semaphore.Release(2);
+                semaphore.Release(cpus);
+
                 await Task.WhenAll(tasks);
                 if (tasks.TrueForAll(x => x.IsCompleted || x.IsCanceled || x.IsFaulted))
                 {
-                    btnProcess.BeginInvoke((Action)(() =>
+                    btnProcess.BeginInvoke(() =>
                     {
                         btnProcess.Symbol = 361515;
                         btnProcess.Enabled = true;
-                    }));
-                    btnCleartask.BeginInvoke((Action)(() => { btnCleartask.Enabled = true; }));
+                    });
+                    btnCleartask.BeginInvoke(() => { btnCleartask.Enabled = true; });
 
                     _isrun = false;
                     WriteLog("任务完成");
@@ -784,7 +834,7 @@ namespace X.Lucifer.LosslessZoom
                     var total = _files.Count;
                     _processlist.Clear();
                     _files.Clear();
-                    panelInfo.BeginInvoke((Action)(() => { panelInfo.Panel.Controls.Clear(); }));
+                    panelInfo.BeginInvoke(() => { panelInfo.Panel.Controls.Clear(); });
                     GC.Collect();
                     UpdateProgress(total, total);
                     UpdateTaskCount(total, total);
@@ -804,15 +854,50 @@ namespace X.Lucifer.LosslessZoom
                             Arguments = _option.OutDirPath,
                             Verb = "runas"
                         };
-                        using var process = new Process
-                        {
-                            StartInfo = sinfo,
-                            EnableRaisingEvents = true
-                        };
+                        using var process = new Process();
+                        process.StartInfo = sinfo;
+                        process.EnableRaisingEvents = true;
                         process.Start();
                     });
                 }
+                semaphore.Dispose();
             });
+        }
+
+        private string GetThread(int cpus)
+        {
+            string result;
+            if (cpus % 3 == 0)
+            {
+                var avg = cpus / 3;
+                result = $"{avg}:{avg}:{avg}";
+            }
+            else
+            {
+                var rec = 1;
+                var remain = cpus - 2;
+                do
+                {
+                    if (remain <= 2)
+                    {
+                        break;
+                    }
+
+                    var xremain = remain % 3;
+                    if (xremain % 2 == 0)
+                    {
+                        rec++;
+                    }
+
+                    remain = xremain;
+                } while (remain > 0);
+
+                var first = rec * 2;
+                var avg = (cpus - first) / 2;
+                result = $"{first}:{avg}:{avg}";
+            }
+
+            return result;
         }
 
         private void Process_Exited(object sender, EventArgs e)
@@ -863,10 +948,10 @@ namespace X.Lucifer.LosslessZoom
             _files.Clear();
             UpdateTaskCount();
             UpdateProgress();
-            panelInfo.BeginInvoke((Action)(() =>
+            panelInfo.BeginInvoke(() =>
             {
                 panelInfo.Panel.Controls.Clear();
-            }));
+            });
             GC.Collect();
             WriteLog("清空任务");
         }

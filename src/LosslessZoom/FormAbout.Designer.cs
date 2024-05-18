@@ -31,15 +31,15 @@ namespace X.Lucifer.LosslessZoom
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbout));
             this.panelInfo = new Sunny.UI.UIPanel();
+            this.lblxCopyright = new Sunny.UI.UILabel();
             this.lblxDesc = new Sunny.UI.UILabel();
             this.lblxVersion = new Sunny.UI.UILabel();
             this.lblxAuthor = new Sunny.UI.UILinkLabel();
+            this.lblCopyright = new Sunny.UI.UILabel();
             this.lblAuthor = new Sunny.UI.UILabel();
             this.lblVersion = new Sunny.UI.UILabel();
             this.lblDesc = new Sunny.UI.UILabel();
             this.lblTitle = new Sunny.UI.UILabel();
-            this.lblCopyright = new Sunny.UI.UILabel();
-            this.lblxCopyright = new Sunny.UI.UILabel();
             this.panelInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +76,19 @@ namespace X.Lucifer.LosslessZoom
             this.panelInfo.TabIndex = 0;
             this.panelInfo.Text = null;
             this.panelInfo.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblxCopyright
+            // 
+            this.lblxCopyright.BackColor = System.Drawing.Color.Transparent;
+            this.lblxCopyright.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblxCopyright.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblxCopyright.Location = new System.Drawing.Point(102, 184);
+            this.lblxCopyright.Name = "lblxCopyright";
+            this.lblxCopyright.Size = new System.Drawing.Size(240, 23);
+            this.lblxCopyright.Style = Sunny.UI.UIStyle.Custom;
+            this.lblxCopyright.StyleCustomMode = true;
+            this.lblxCopyright.TabIndex = 5;
+            this.lblxCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblxDesc
             // 
@@ -119,6 +132,20 @@ namespace X.Lucifer.LosslessZoom
             this.lblxAuthor.StyleCustomMode = true;
             this.lblxAuthor.TabIndex = 2;
             this.lblxAuthor.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblxAuthor.Click += new System.EventHandler(this.lblxAuthor_Click);
+            // 
+            // lblCopyright
+            // 
+            this.lblCopyright.BackColor = System.Drawing.Color.Transparent;
+            this.lblCopyright.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCopyright.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblCopyright.Location = new System.Drawing.Point(30, 184);
+            this.lblCopyright.Name = "lblCopyright";
+            this.lblCopyright.Size = new System.Drawing.Size(70, 23);
+            this.lblCopyright.Style = Sunny.UI.UIStyle.Custom;
+            this.lblCopyright.TabIndex = 1;
+            this.lblCopyright.Text = "版权信息:";
+            this.lblCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblAuthor
             // 
@@ -173,36 +200,9 @@ namespace X.Lucifer.LosslessZoom
             this.lblTitle.Text = "AI Lossless Zoomer";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblCopyright
-            // 
-            this.lblCopyright.BackColor = System.Drawing.Color.Transparent;
-            this.lblCopyright.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCopyright.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblCopyright.Location = new System.Drawing.Point(30, 184);
-            this.lblCopyright.Name = "lblCopyright";
-            this.lblCopyright.Size = new System.Drawing.Size(70, 23);
-            this.lblCopyright.Style = Sunny.UI.UIStyle.Custom;
-            this.lblCopyright.TabIndex = 1;
-            this.lblCopyright.Text = "版权信息:";
-            this.lblCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblxCopyright
-            // 
-            this.lblxCopyright.BackColor = System.Drawing.Color.Transparent;
-            this.lblxCopyright.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblxCopyright.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblxCopyright.Location = new System.Drawing.Point(102, 184);
-            this.lblxCopyright.Name = "lblxCopyright";
-            this.lblxCopyright.Size = new System.Drawing.Size(240, 23);
-            this.lblxCopyright.Style = Sunny.UI.UIStyle.Custom;
-            this.lblxCopyright.StyleCustomMode = true;
-            this.lblxCopyright.TabIndex = 5;
-            this.lblxCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // FormAbout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(372, 314);
             this.Controls.Add(this.panelInfo);
@@ -212,12 +212,11 @@ namespace X.Lucifer.LosslessZoom
             this.MinimizeBox = false;
             this.Name = "FormAbout";
             this.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.ShowRadius = false;
-            this.ShowShadow = true;
             this.Style = Sunny.UI.UIStyle.Custom;
             this.Text = "关于";
             this.TextAlignment = System.Drawing.StringAlignment.Center;
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 372, 314);
             this.Load += new System.EventHandler(this.FormAbout_Load);
             this.panelInfo.ResumeLayout(false);
             this.ResumeLayout(false);

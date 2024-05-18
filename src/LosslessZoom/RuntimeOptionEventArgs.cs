@@ -2,12 +2,8 @@
 
 namespace X.Lucifer.LosslessZoom
 {
-    public class RuntimeOptionEventArgs : EventArgs
+    public class RuntimeOptionEventArgs(RuntimeOption option) : EventArgs
     {
-        public RuntimeOption Option { get;}
-        public RuntimeOptionEventArgs(RuntimeOption option)
-        {
-            Option = option;
-        }
+        public RuntimeOption Option { get;} = option;
     }
 }

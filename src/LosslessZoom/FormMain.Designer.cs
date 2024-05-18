@@ -26,8 +26,8 @@ namespace X.Lucifer.LosslessZoom
         #region Windows 窗体设计器生成的代码
 
         /// <summary>
-        /// 设计器支持所需的方法 - 不要修改
-        /// 使用代码编辑器修改此方法的内容。
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -68,6 +68,7 @@ namespace X.Lucifer.LosslessZoom
             this.ledStarttime = new Sunny.UI.UILedStopwatch();
             this.lblxTotal = new Sunny.UI.UILedLabel();
             this.lblxFinished = new Sunny.UI.UILedLabel();
+            this.uiStyleManager = new Sunny.UI.UIStyleManager(this.components);
             this.SuspendLayout();
             // 
             // navbarMenu
@@ -75,20 +76,20 @@ namespace X.Lucifer.LosslessZoom
             this.navbarMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.navbarMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.navbarMenu.DropDownItemAutoHeight = true;
+            this.navbarMenu.DropMenuFont = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.navbarMenu.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.navbarMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.navbarMenu.Location = new System.Drawing.Point(0, 5);
             this.navbarMenu.Margin = new System.Windows.Forms.Padding(5);
+            this.navbarMenu.MenuSelectedColorUsed = true;
             this.navbarMenu.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
             this.navbarMenu.Name = "navbarMenu";
             this.navbarMenu.NodeAlignment = System.Drawing.StringAlignment.Near;
-            this.navbarMenu.NodeInterval = 1;
-            this.navbarMenu.NodeSize = new System.Drawing.Size(80, 45);
-            this.navbarMenu.Padding = new System.Windows.Forms.Padding(5);
-            this.navbarMenu.Radius = 2;
+            this.navbarMenu.NodeInterval = 0;
+            this.navbarMenu.NodeSize = new System.Drawing.Size(50, 40);
+            this.navbarMenu.Radius = 3;
             this.navbarMenu.SelectedHighColorSize = 2;
             this.navbarMenu.ShowItemsArrow = false;
-            this.navbarMenu.Size = new System.Drawing.Size(161, 35);
+            this.navbarMenu.Size = new System.Drawing.Size(150, 35);
             this.navbarMenu.Style = Sunny.UI.UIStyle.Custom;
             this.navbarMenu.StyleCustomMode = true;
             this.navbarMenu.TabIndex = 0;
@@ -173,6 +174,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             // uiLine10
             // 
+            this.uiLine10.BackColor = System.Drawing.Color.Transparent;
             this.uiLine10.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiLine10.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.uiLine10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -195,7 +197,6 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.AutoWordSelection = true;
             this.txtLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.txtLog.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.txtLog.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
@@ -211,13 +212,14 @@ namespace X.Lucifer.LosslessZoom
             this.txtLog.ReadOnly = true;
             this.txtLog.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.txtLog.RectDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.txtLog.ScrollBarStyleInherited = false;
             this.txtLog.ShortcutsEnabled = false;
+            this.txtLog.ShowText = false;
             this.txtLog.Size = new System.Drawing.Size(484, 239);
             this.txtLog.Style = Sunny.UI.UIStyle.Custom;
             this.txtLog.StyleCustomMode = true;
             this.txtLog.TabIndex = 1;
             this.txtLog.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.txtLog.WordWrap = true;
             // 
             // lblVideoname
             // 
@@ -378,7 +380,6 @@ namespace X.Lucifer.LosslessZoom
             // panelInfo
             // 
             this.panelInfo.AllowDrop = true;
-            this.panelInfo.AutoScroll = true;
             this.panelInfo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
             this.panelInfo.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.panelInfo.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -394,15 +395,19 @@ namespace X.Lucifer.LosslessZoom
             this.panelInfo.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.panelInfo.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.panelInfo.ScrollBarStyleInherited = false;
+            this.panelInfo.ShowText = false;
             this.panelInfo.Size = new System.Drawing.Size(752, 260);
             this.panelInfo.Style = Sunny.UI.UIStyle.Custom;
             this.panelInfo.StyleCustomMode = true;
             this.panelInfo.TabIndex = 0;
+            this.panelInfo.Text = null;
             this.panelInfo.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.panelInfo.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelInfo_DragEnter);
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -450,6 +455,7 @@ namespace X.Lucifer.LosslessZoom
             this.btnProcess.Symbol = 361515;
             this.btnProcess.TabIndex = 33;
             this.btnProcess.Text = "开始任务";
+            this.btnProcess.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // btnClearlog
             // 
@@ -480,6 +486,7 @@ namespace X.Lucifer.LosslessZoom
             this.btnClearlog.Symbol = 361741;
             this.btnClearlog.TabIndex = 33;
             this.btnClearlog.Text = "清空日志";
+            this.btnClearlog.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnClearlog.Click += new System.EventHandler(this.btnClearlog_Click);
             // 
             // btnCleartask
@@ -511,6 +518,7 @@ namespace X.Lucifer.LosslessZoom
             this.btnCleartask.Symbol = 361944;
             this.btnCleartask.TabIndex = 33;
             this.btnCleartask.Text = "清空任务";
+            this.btnCleartask.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCleartask.Click += new System.EventHandler(this.btnCleartask_Click);
             // 
             // tooltipPic
@@ -520,15 +528,15 @@ namespace X.Lucifer.LosslessZoom
             this.tooltipPic.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.tooltipPic.OwnerDraw = true;
             this.tooltipPic.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.tooltipPic.ToolTipTitle = "";
             // 
             // progressInfo
             // 
             this.progressInfo.BackColor = System.Drawing.Color.Transparent;
             this.progressInfo.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.progressInfo.ForeColor = System.Drawing.Color.White;
+            this.progressInfo.ForeColor2 = System.Drawing.Color.Black;
             this.progressInfo.Inner = 0;
-            this.progressInfo.Location = new System.Drawing.Point(856, 601);
+            this.progressInfo.Location = new System.Drawing.Point(850, 601);
             this.progressInfo.Margin = new System.Windows.Forms.Padding(0);
             this.progressInfo.MinimumSize = new System.Drawing.Size(1, 1);
             this.progressInfo.Name = "progressInfo";
@@ -537,7 +545,7 @@ namespace X.Lucifer.LosslessZoom
             this.progressInfo.Radius = 0;
             this.progressInfo.ShowFocusColor = true;
             this.progressInfo.ShowProcess = true;
-            this.progressInfo.Size = new System.Drawing.Size(72, 76);
+            this.progressInfo.Size = new System.Drawing.Size(76, 76);
             this.progressInfo.Style = Sunny.UI.UIStyle.Custom;
             this.progressInfo.StyleCustomMode = true;
             this.progressInfo.TabIndex = 10;
@@ -545,9 +553,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblTaskAll
             // 
-            this.lblTaskAll.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblTaskAll.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblTaskAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblTaskAll.Location = new System.Drawing.Point(672, 612);
+            this.lblTaskAll.Location = new System.Drawing.Point(666, 611);
             this.lblTaskAll.Name = "lblTaskAll";
             this.lblTaskAll.Size = new System.Drawing.Size(64, 23);
             this.lblTaskAll.Style = Sunny.UI.UIStyle.Custom;
@@ -558,9 +566,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblTaskRemain
             // 
-            this.lblTaskRemain.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblTaskRemain.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblTaskRemain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblTaskRemain.Location = new System.Drawing.Point(672, 647);
+            this.lblTaskRemain.Location = new System.Drawing.Point(666, 646);
             this.lblTaskRemain.Name = "lblTaskRemain";
             this.lblTaskRemain.Size = new System.Drawing.Size(64, 23);
             this.lblTaskRemain.Style = Sunny.UI.UIStyle.Custom;
@@ -571,7 +579,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblTotaltime
             // 
-            this.lblTotaltime.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblTotaltime.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblTotaltime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.lblTotaltime.Location = new System.Drawing.Point(388, 647);
             this.lblTotaltime.Name = "lblTotaltime";
@@ -584,7 +592,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblStart
             // 
-            this.lblStart.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblStart.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.lblStart.Location = new System.Drawing.Point(388, 612);
             this.lblStart.Name = "lblStart";
@@ -601,6 +609,7 @@ namespace X.Lucifer.LosslessZoom
             this.ledTotaltime.BorderColor = System.Drawing.Color.Transparent;
             this.ledTotaltime.BorderInColor = System.Drawing.Color.Transparent;
             this.ledTotaltime.CharCount = 8;
+            this.ledTotaltime.Font = new System.Drawing.Font("宋体", 11F);
             this.ledTotaltime.ForeColor = System.Drawing.Color.LimeGreen;
             this.ledTotaltime.IntervalV = 3;
             this.ledTotaltime.Location = new System.Drawing.Point(474, 643);
@@ -617,6 +626,7 @@ namespace X.Lucifer.LosslessZoom
             this.ledStarttime.BorderColor = System.Drawing.Color.Transparent;
             this.ledStarttime.BorderInColor = System.Drawing.Color.Transparent;
             this.ledStarttime.CharCount = 8;
+            this.ledStarttime.Font = new System.Drawing.Font("宋体", 11F);
             this.ledStarttime.ForeColor = System.Drawing.Color.LimeGreen;
             this.ledStarttime.IntervalV = 3;
             this.ledStarttime.Location = new System.Drawing.Point(474, 608);
@@ -629,7 +639,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblxTotal
             // 
-            this.lblxTotal.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblxTotal.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblxTotal.Location = new System.Drawing.Point(746, 606);
             this.lblxTotal.MinimumSize = new System.Drawing.Size(1, 1);
             this.lblxTotal.Name = "lblxTotal";
@@ -641,7 +651,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblxFinished
             // 
-            this.lblxFinished.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblxFinished.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.lblxFinished.ForeColor = System.Drawing.Color.LimeGreen;
             this.lblxFinished.Location = new System.Drawing.Point(746, 641);
             this.lblxFinished.MinimumSize = new System.Drawing.Size(1, 1);
@@ -652,11 +662,15 @@ namespace X.Lucifer.LosslessZoom
             this.lblxFinished.TabStop = false;
             this.lblxFinished.Text = "-";
             // 
+            // uiStyleManager
+            // 
+            this.uiStyleManager.DPIScale = true;
+            this.uiStyleManager.GlobalFont = true;
+            // 
             // FormMain
             // 
             this.AllowAddControlOnTitle = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(944, 679);
             this.CloseAskString = "";
@@ -699,13 +713,11 @@ namespace X.Lucifer.LosslessZoom
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.ShowIcon = true;
-            this.ShowRadius = false;
-            this.ShowShadow = true;
             this.Style = Sunny.UI.UIStyle.Custom;
             this.Text = "AI无损放大工具";
             this.TextAlignment = System.Drawing.StringAlignment.Center;
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 944, 679);
             this.ResumeLayout(false);
 
         }
@@ -747,6 +759,7 @@ namespace X.Lucifer.LosslessZoom
         private Sunny.UI.UILedStopwatch ledStarttime;
         private Sunny.UI.UILedLabel lblxTotal;
         private Sunny.UI.UILedLabel lblxFinished;
+        private Sunny.UI.UIStyleManager uiStyleManager;
     }
 }
 

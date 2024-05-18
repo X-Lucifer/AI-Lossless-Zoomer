@@ -34,20 +34,35 @@ namespace X.Lucifer.LosslessZoom
         {
             var list = new List<ComboxItem>
             {
-                new ComboxItem
+                new()
                 {
                     Id = "0",
                     Name = "realesrgan-x4plus"
                 },
-                new ComboxItem
+                new()
                 {
                     Id = "1",
-                    Name = "realesrnet-x4plus"
+                    Name = "realesrgan-x4plus"
                 },
-                new ComboxItem
+                new()
                 {
                     Id = "2",
                     Name = "realesrgan-x4plus-anime"
+                },
+                new()
+                {
+                    Id = "3",
+                    Name = "realesr-animevideov3-x2"
+                },
+                new()
+                {
+                    Id = "4",
+                    Name = "realesr-animevideov3-x3"
+                },
+                new()
+                {
+                    Id = "5",
+                    Name = "realesr-animevideov3-x4"
                 }
             };
             cbxModule.DisplayMember = nameof(ComboxItem.Name);
@@ -58,22 +73,22 @@ namespace X.Lucifer.LosslessZoom
             //绑定格式
             var flist = new List<ComboxItem>
             {
-                new ComboxItem
+                new()
                 {
                     Id = "0",
                     Name = "默认"
                 },
-                new ComboxItem
+                new()
                 {
                     Id = "1",
                     Name = "JPG"
                 },
-                new ComboxItem
+                new()
                 {
                     Id = "2",
                     Name = "PNG"
                 },
-                new ComboxItem
+                new()
                 {
                     Id = "3",
                     Name = "WebP"
@@ -142,11 +157,8 @@ namespace X.Lucifer.LosslessZoom
 
         private void btnBrowser_Click(object sender, EventArgs e)
         {
-            var dialog = new FolderBrowserDialog
-            {
-                ShowNewFolderButton = true,
-                
-            };
+            using var dialog = new FolderBrowserDialog();
+            dialog.ShowNewFolderButton = true;
             var result = dialog.ShowDialog();
             txtOutDir.Text = result == DialogResult.OK ? dialog.SelectedPath : _option.OutDirPath;
         }
