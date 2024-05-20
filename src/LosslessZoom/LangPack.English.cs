@@ -170,7 +170,7 @@ public class LangPackEnglish : ILangPack
     public string FormMain_Has_Finished { get; } = "It's already done.";
 
     /// <inheritdoc />
-    public string FormMain_lblVideoname { get; } = "Video Card:";
+    public string FormMain_lblVideoname { get; } = "Graphics:";
 
     /// <inheritdoc />
     public string FormMain_lblCpuLogic { get; } = "Logic CPU:";
@@ -179,7 +179,7 @@ public class LangPackEnglish : ILangPack
     public string FormMain_lblCpu { get; } = "CPU Count:";
 
     /// <inheritdoc />
-    public string FormMain_lblProcessor { get; } = "Processor:";
+    public string FormMain_lblProcessor { get; } = "CPU:";
 
     /// <inheritdoc />
     public string FormMain_lblBrand { get; } = "Brand:";
@@ -203,8 +203,8 @@ public class LangPackEnglish : ILangPack
     public string FormMain_lblTaskRemain { get; } = "Finished:";
 
     /// <inheritdoc />
-    public string FormMain_lblTotaltime { get; } = "Consuming:";
+    public string FormMain_lblTotaltime { get; } = "Spend:";
 
     /// <inheritdoc />
-    public string FormMain_lblStart { get; } = "StartAt:";
+    public string FormMain_lblStart { get; } = "Start:";
 }

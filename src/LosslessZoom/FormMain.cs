@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Management;
@@ -21,7 +20,6 @@ namespace X.Lucifer.LosslessZoom;
 
 public partial class FormMain : UIForm
 {
-    private readonly PrivateFontCollection _fonts = new();
     private readonly string _outdir = AppContext.BaseDirectory + @"output\";
 
     private readonly List<string> _formats =
@@ -37,8 +35,7 @@ public partial class FormMain : UIForm
     private readonly List<int> _processlist;
     private bool _isai;
     private bool _isrun;
-    private ILangPack _pack;
-
+    private ILangPack _pack = new LangPack();
     public FormMain()
     {
         _processlist = [];
@@ -54,16 +51,6 @@ public partial class FormMain : UIForm
     private async Task FormMain_Load()
     {
         this.ShowProcessForm();
-        var font_bytes = Properties.Resources.fonts;
-        unsafe
-        {
-            fixed (byte* fontdata = font_bytes)
-            {
-                _fonts.AddMemoryFont((IntPtr)fontdata, font_bytes.Length);
-            }
-        }
-
-        uiStyleManager.GlobalFontName = _fonts.Families[0].Name;
         await Task.Run(LoadConfig);
         FormClosed += async (_, _) => await FormMain_FormClosed();
         panelInfo.DragDrop += async (_, x) => await panelInfo_DragDrop(x);
@@ -98,6 +85,7 @@ public partial class FormMain : UIForm
         {
             if (!_isrun)
             {
+                GC.Collect();
                 Application.Exit();
             }
             else
@@ -117,6 +105,7 @@ public partial class FormMain : UIForm
                 }
                 finally
                 {
+                    GC.Collect();
                     Application.Exit();
                 }
             }
@@ -223,11 +212,12 @@ public partial class FormMain : UIForm
 
             topindex++;
         }
-
+        navbarMenu.ResetFont();
+        navbarMenu.DropMenuFont = GetFonts();
+        navbarMenu.Font = GetFonts();
         navbarMenu.MenuItemClick += async (_, _, index) => await NavbarMenu_MenuItemClick(index);
         WriteLog(_pack.FormMain_Init_Menu);
     }
-
 
     /// <summary>
     /// 菜单事件处理
@@ -292,20 +282,75 @@ public partial class FormMain : UIForm
 
     private void LoadUiLang(ILangPack lang)
     {
-        Text = lang.FormMain_Title;
-        lblVideoname.Text = lang.FormMain_lblVideoname;
-        lblCpuLogic.Text = lang.FormMain_lblCpuLogic;
-        lblCpu.Text = lang.FormMain_lblCpu;
-        lblProcessor.Text = lang.FormMain_lblProcessor;
-        lblBrand.Text = lang.FormMain_lblBrand;
-        lblSysname.Text = lang.FormMain_lblSysname;
-        btnProcess.Text = lang.FormMain_btnProcess;
-        btnClearlog.Text = lang.FormMain_btnClearlog;
-        btnCleartask.Text = lang.FormMain_btnCleartask;
-        lblTaskAll.Text = lang.FormMain_lblTaskAll;
-        lblTaskRemain.Text = lang.FormMain_lblTaskRemain;
-        lblTotaltime.Text = lang.FormMain_lblTotaltime;
-        lblStart.Text = lang.FormMain_lblStart;
+        ChangeFonts(Controls);
+        BeginInvoke((Action<string>) (x =>
+        {
+            Text = x;
+        }), lang.FormMain_Title);
+        lblVideoname.BeginInvoke((Action<string>) (x =>
+        {
+            lblVideoname.Text = x;
+        }), lang.FormMain_lblVideoname);
+
+        lblCpuLogic.BeginInvoke((Action<string>) (x =>
+        {
+            lblCpuLogic.Text = x;
+        }), lang.FormMain_lblCpuLogic);
+
+        lblCpu.BeginInvoke((Action<string>) (x =>
+        {
+            lblCpu.Text = x;
+        }), lang.FormMain_lblCpu);
+
+        lblProcessor.BeginInvoke((Action<string>) (x =>
+        {
+            lblProcessor.Text = x;
+        }), lang.FormMain_lblProcessor);
+
+        lblBrand.BeginInvoke((Action<string>) (x =>
+        {
+            lblBrand.Text = x;
+        }), lang.FormMain_lblBrand);
+
+        lblSysname.BeginInvoke((Action<string>) (x =>
+        {
+            lblSysname.Text = x;
+        }), lang.FormMain_lblSysname);
+
+        btnProcess.BeginInvoke((Action<string>) (x =>
+        {
+            btnProcess.Text = x;
+        }), lang.FormMain_btnProcess);
+
+        btnClearlog.BeginInvoke((Action<string>) (x =>
+        {
+            btnClearlog.Text = x;
+        }), lang.FormMain_btnClearlog);
+
+        btnCleartask.BeginInvoke((Action<string>) (x =>
+        {
+            btnCleartask.Text = x;
+        }), lang.FormMain_btnCleartask);
+
+        lblTaskAll.BeginInvoke((Action<string>) (x =>
+        {
+            lblTaskAll.Text = x;
+        }), lang.FormMain_lblTaskAll);
+
+        lblTaskRemain.BeginInvoke((Action<string>) (x =>
+        {
+            lblTaskRemain.Text = x;
+        }), lang.FormMain_lblTaskRemain);
+
+        lblTotaltime.BeginInvoke((Action<string>) (x =>
+        {
+            lblTotaltime.Text = x;
+        }), lang.FormMain_lblTotaltime);
+
+        lblStart.BeginInvoke((Action<string>) (x =>
+        {
+            lblStart.Text = x;
+        }), lang.FormMain_lblStart);
     }
 
     /// <summary>
@@ -489,7 +534,6 @@ public partial class FormMain : UIForm
         panelInfo.Panel.Controls.Remove(pic);
         UpdateProgress();
         UpdateTaskCount(0, _files.Count);
-        GC.Collect();
     }
 
     /// <summary>
@@ -652,6 +696,7 @@ public partial class FormMain : UIForm
                 txtLog.Text = string.Empty;
             }
 
+            txtLog.Font = GetFonts();
             txtLog.AppendText($"[{DateTime.Now:G}] | {x}{Environment.NewLine}");
             txtLog.ScrollToCaret();
         }), txt, isclear);
@@ -864,7 +909,6 @@ public partial class FormMain : UIForm
                 _processlist.Clear();
                 _files.Clear();
                 panelInfo.BeginInvoke(() => { panelInfo.Panel.Controls.Clear(); });
-                GC.Collect();
                 UpdateProgress(total, total);
                 UpdateTaskCount(total, total);
                 totaltimer.Stop();
@@ -957,7 +1001,6 @@ public partial class FormMain : UIForm
     private void btnClearlog_Click(object sender, EventArgs e)
     {
         WriteLog(_pack.FormMain_Clear_Logs, true);
-        GC.Collect();
     }
 
     /// <summary>
@@ -978,7 +1021,6 @@ public partial class FormMain : UIForm
         UpdateTaskCount();
         UpdateProgress();
         panelInfo.BeginInvoke(() => { panelInfo.Panel.Controls.Clear(); });
-        GC.Collect();
         WriteLog(_pack.FormMain_Clear_All_Task);
     }
 

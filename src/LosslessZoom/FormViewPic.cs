@@ -29,5 +29,6 @@ public partial class FormViewPic : UIForm
         };
         panelPic.Controls.Add(pic);
         lblPicname.Text = _pic.Text;
+        ApiExtensions.ChangeFonts(Controls);
     }
 }

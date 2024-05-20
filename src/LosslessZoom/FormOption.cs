@@ -111,6 +111,7 @@ public partial class FormOption : UIEditForm
         rbDefault.CheckedChanged += RbDir_CheckedChanged;
         rbManual.CheckedChanged += RbDir_CheckedChanged;
         btnOK.Click += BtnOK_Click;
+        ApiExtensions.ChangeFonts(Controls);
     }
 
     private void RbDir_CheckedChanged(object sender, EventArgs e)

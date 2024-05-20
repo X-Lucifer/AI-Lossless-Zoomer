@@ -68,15 +68,14 @@ namespace X.Lucifer.LosslessZoom
             this.ledStarttime = new Sunny.UI.UILedStopwatch();
             this.lblxTotal = new Sunny.UI.UILedLabel();
             this.lblxFinished = new Sunny.UI.UILedLabel();
-            this.uiStyleManager = new Sunny.UI.UIStyleManager(this.components);
             this.SuspendLayout();
             // 
             // navbarMenu
             // 
             this.navbarMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.navbarMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.navbarMenu.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.navbarMenu.DropDownItemAutoHeight = true;
-            this.navbarMenu.DropMenuFont = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navbarMenu.DropMenuFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.navbarMenu.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.navbarMenu.Location = new System.Drawing.Point(0, 6);
             this.navbarMenu.Margin = new System.Windows.Forms.Padding(5);
@@ -96,11 +95,11 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblTime
             // 
-            this.lblTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.lblTime.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.lblTime.BorderColor = System.Drawing.Color.Transparent;
             this.lblTime.BorderInColor = System.Drawing.Color.Transparent;
             this.lblTime.CharCount = 18;
-            this.lblTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.lblTime.ForeColor = System.Drawing.Color.LimeGreen;
             this.lblTime.Location = new System.Drawing.Point(25, 622);
             this.lblTime.Name = "lblTime";
@@ -114,11 +113,11 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lineBottom
             // 
-            this.lineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.lineBottom.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.lineBottom.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lineBottom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.lineBottom.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.lineBottom.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.lineBottom.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.lineBottom.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lineBottom.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.lineBottom.LineColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.lineBottom.Location = new System.Drawing.Point(18, 594);
             this.lineBottom.Margin = new System.Windows.Forms.Padding(0);
             this.lineBottom.MinimumSize = new System.Drawing.Size(1, 1);
@@ -134,11 +133,11 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lineHeader
             // 
-            this.lineHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.lineHeader.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.lineHeader.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lineHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.lineHeader.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.lineHeader.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.lineHeader.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.lineHeader.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lineHeader.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.lineHeader.LineColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.lineHeader.Location = new System.Drawing.Point(18, 50);
             this.lineHeader.Margin = new System.Windows.Forms.Padding(0);
             this.lineHeader.MinimumSize = new System.Drawing.Size(1, 1);
@@ -154,11 +153,11 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lineCenter
             // 
-            this.lineCenter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.lineCenter.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.lineCenter.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lineCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.lineCenter.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.lineCenter.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.lineCenter.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.lineCenter.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lineCenter.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.lineCenter.LineColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.lineCenter.Location = new System.Drawing.Point(18, 329);
             this.lineCenter.Margin = new System.Windows.Forms.Padding(0);
             this.lineCenter.MinimumSize = new System.Drawing.Size(1, 1);
@@ -176,10 +175,10 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.uiLine10.BackColor = System.Drawing.Color.Transparent;
             this.uiLine10.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiLine10.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.uiLine10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLine10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.uiLine10.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.uiLine10.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.uiLine10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.uiLine10.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.uiLine10.LineColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.uiLine10.Location = new System.Drawing.Point(467, 342);
             this.uiLine10.Margin = new System.Windows.Forms.Padding(0);
             this.uiLine10.MinimumSize = new System.Drawing.Size(1, 1);
@@ -195,14 +194,13 @@ namespace X.Lucifer.LosslessZoom
             // 
             // txtLog
             // 
-            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.txtLog.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.txtLog.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.txtLog.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.txtLog.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLog.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.txtLog.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.txtLog.FillDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.txtLog.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.txtLog.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
+            this.txtLog.ForeDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.txtLog.HideSelection = false;
             this.txtLog.Location = new System.Drawing.Point(485, 345);
             this.txtLog.Margin = new System.Windows.Forms.Padding(0);
@@ -210,8 +208,8 @@ namespace X.Lucifer.LosslessZoom
             this.txtLog.Name = "txtLog";
             this.txtLog.Padding = new System.Windows.Forms.Padding(2);
             this.txtLog.ReadOnly = true;
-            this.txtLog.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.txtLog.RectDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.txtLog.RectColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.txtLog.RectDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.txtLog.ScrollBarStyleInherited = false;
             this.txtLog.ShortcutsEnabled = false;
             this.txtLog.ShowText = false;
@@ -223,8 +221,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblVideoname
             // 
-            this.lblVideoname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblVideoname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblVideoname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblVideoname.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblVideoname.Location = new System.Drawing.Point(23, 561);
             this.lblVideoname.Name = "lblVideoname";
             this.lblVideoname.Size = new System.Drawing.Size(82, 23);
@@ -236,8 +234,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblCpuLogic
             // 
-            this.lblCpuLogic.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCpuLogic.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblCpuLogic.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblCpuLogic.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblCpuLogic.Location = new System.Drawing.Point(23, 519);
             this.lblCpuLogic.Name = "lblCpuLogic";
             this.lblCpuLogic.Size = new System.Drawing.Size(82, 23);
@@ -249,8 +247,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblCpu
             // 
-            this.lblCpu.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCpu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblCpu.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblCpu.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblCpu.Location = new System.Drawing.Point(23, 477);
             this.lblCpu.Name = "lblCpu";
             this.lblCpu.Size = new System.Drawing.Size(82, 23);
@@ -262,8 +260,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblProcessor
             // 
-            this.lblProcessor.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblProcessor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblProcessor.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblProcessor.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblProcessor.Location = new System.Drawing.Point(23, 435);
             this.lblProcessor.Name = "lblProcessor";
             this.lblProcessor.Size = new System.Drawing.Size(82, 23);
@@ -275,8 +273,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblBrand
             // 
-            this.lblBrand.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblBrand.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblBrand.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblBrand.Location = new System.Drawing.Point(23, 393);
             this.lblBrand.Name = "lblBrand";
             this.lblBrand.Size = new System.Drawing.Size(82, 23);
@@ -288,8 +286,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblSysname
             // 
-            this.lblSysname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblSysname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblSysname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblSysname.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblSysname.Location = new System.Drawing.Point(23, 351);
             this.lblSysname.Name = "lblSysname";
             this.lblSysname.Size = new System.Drawing.Size(82, 23);
@@ -301,8 +299,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblxsysname
             // 
-            this.lblxsysname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblxsysname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblxsysname.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblxsysname.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblxsysname.Location = new System.Drawing.Point(113, 351);
             this.lblxsysname.Name = "lblxsysname";
             this.lblxsysname.Size = new System.Drawing.Size(334, 23);
@@ -314,8 +312,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblxbrand
             // 
-            this.lblxbrand.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblxbrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblxbrand.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblxbrand.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblxbrand.Location = new System.Drawing.Point(113, 393);
             this.lblxbrand.Name = "lblxbrand";
             this.lblxbrand.Size = new System.Drawing.Size(334, 23);
@@ -327,8 +325,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblxprocessor
             // 
-            this.lblxprocessor.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblxprocessor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblxprocessor.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblxprocessor.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblxprocessor.Location = new System.Drawing.Point(113, 435);
             this.lblxprocessor.Name = "lblxprocessor";
             this.lblxprocessor.Size = new System.Drawing.Size(334, 23);
@@ -340,8 +338,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblxcpu
             // 
-            this.lblxcpu.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblxcpu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblxcpu.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblxcpu.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblxcpu.Location = new System.Drawing.Point(113, 477);
             this.lblxcpu.Name = "lblxcpu";
             this.lblxcpu.Size = new System.Drawing.Size(334, 23);
@@ -353,8 +351,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblxcpulogic
             // 
-            this.lblxcpulogic.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblxcpulogic.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblxcpulogic.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblxcpulogic.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblxcpulogic.Location = new System.Drawing.Point(113, 519);
             this.lblxcpulogic.Name = "lblxcpulogic";
             this.lblxcpulogic.Size = new System.Drawing.Size(334, 23);
@@ -366,8 +364,8 @@ namespace X.Lucifer.LosslessZoom
             // 
             // lblxvideo
             // 
-            this.lblxvideo.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblxvideo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblxvideo.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.lblxvideo.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblxvideo.Location = new System.Drawing.Point(113, 561);
             this.lblxvideo.Name = "lblxvideo";
             this.lblxvideo.Size = new System.Drawing.Size(334, 23);
@@ -380,21 +378,20 @@ namespace X.Lucifer.LosslessZoom
             // panelInfo
             // 
             this.panelInfo.AllowDrop = true;
-            this.panelInfo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.panelInfo.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.panelInfo.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.panelInfo.FillDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.panelInfo.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.panelInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.panelInfo.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.panelInfo.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
+            this.panelInfo.ForeDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.panelInfo.Location = new System.Drawing.Point(25, 64);
             this.panelInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelInfo.MinimumSize = new System.Drawing.Size(1, 1);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Padding = new System.Windows.Forms.Padding(2);
-            this.panelInfo.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.panelInfo.RectDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.panelInfo.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.panelInfo.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.panelInfo.RectColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.panelInfo.RectDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.panelInfo.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides) (((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.panelInfo.ScrollBarColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.panelInfo.ScrollBarStyleInherited = false;
             this.panelInfo.ShowText = false;
             this.panelInfo.Size = new System.Drawing.Size(752, 260);
@@ -409,10 +406,10 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.uiLine1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.uiLine1.LineColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.uiLine1.Location = new System.Drawing.Point(785, 70);
             this.uiLine1.Margin = new System.Windows.Forms.Padding(0);
             this.uiLine1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -428,106 +425,106 @@ namespace X.Lucifer.LosslessZoom
             // 
             // btnProcess
             // 
-            this.btnProcess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.btnProcess.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.btnProcess.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnProcess.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnProcess.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
-            this.btnProcess.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
-            this.btnProcess.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
-            this.btnProcess.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.btnProcess.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnProcess.FillDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
+            this.btnProcess.FillHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
+            this.btnProcess.FillPressColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
+            this.btnProcess.FillSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.btnProcess.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnProcess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
-            this.btnProcess.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnProcess.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnProcess.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
-            this.btnProcess.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
+            this.btnProcess.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
+            this.btnProcess.ForeDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnProcess.ForeHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnProcess.ForePressColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
+            this.btnProcess.ForeSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
             this.btnProcess.Location = new System.Drawing.Point(807, 246);
             this.btnProcess.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnProcess.Name = "btnProcess";
-            this.btnProcess.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.btnProcess.RectDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
-            this.btnProcess.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
-            this.btnProcess.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
-            this.btnProcess.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(216)))), ((int)(((byte)(64)))));
+            this.btnProcess.RectColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.btnProcess.RectDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
+            this.btnProcess.RectHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
+            this.btnProcess.RectPressColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
+            this.btnProcess.RectSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (73)))), ((int) (((byte) (216)))), ((int) (((byte) (64)))));
             this.btnProcess.Size = new System.Drawing.Size(112, 51);
             this.btnProcess.Style = Sunny.UI.UIStyle.Custom;
             this.btnProcess.StyleCustomMode = true;
             this.btnProcess.Symbol = 361515;
             this.btnProcess.TabIndex = 33;
             this.btnProcess.Text = "开始任务";
-            this.btnProcess.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnProcess.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             // 
             // btnClearlog
             // 
-            this.btnClearlog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.btnClearlog.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.btnClearlog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClearlog.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnClearlog.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClearlog.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClearlog.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClearlog.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.btnClearlog.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnClearlog.FillDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
+            this.btnClearlog.FillHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
+            this.btnClearlog.FillPressColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
+            this.btnClearlog.FillSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.btnClearlog.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnClearlog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClearlog.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnClearlog.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnClearlog.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClearlog.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnClearlog.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
+            this.btnClearlog.ForeDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnClearlog.ForeHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnClearlog.ForePressColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
+            this.btnClearlog.ForeSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
             this.btnClearlog.Location = new System.Drawing.Point(807, 170);
             this.btnClearlog.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnClearlog.Name = "btnClearlog";
-            this.btnClearlog.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.btnClearlog.RectDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClearlog.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClearlog.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClearlog.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnClearlog.RectColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.btnClearlog.RectDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
+            this.btnClearlog.RectHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
+            this.btnClearlog.RectPressColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
+            this.btnClearlog.RectSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (128)))), ((int) (((byte) (0)))));
             this.btnClearlog.Size = new System.Drawing.Size(112, 51);
             this.btnClearlog.Style = Sunny.UI.UIStyle.Custom;
             this.btnClearlog.StyleCustomMode = true;
             this.btnClearlog.Symbol = 361741;
             this.btnClearlog.TabIndex = 33;
             this.btnClearlog.Text = "清空日志";
-            this.btnClearlog.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnClearlog.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.btnClearlog.Click += new System.EventHandler(this.btnClearlog_Click);
             // 
             // btnCleartask
             // 
-            this.btnCleartask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.btnCleartask.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.btnCleartask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCleartask.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnCleartask.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
-            this.btnCleartask.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
-            this.btnCleartask.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
-            this.btnCleartask.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.btnCleartask.FillColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnCleartask.FillDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
+            this.btnCleartask.FillHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
+            this.btnCleartask.FillPressColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
+            this.btnCleartask.FillSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.btnCleartask.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnCleartask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
-            this.btnCleartask.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnCleartask.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.btnCleartask.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
-            this.btnCleartask.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
+            this.btnCleartask.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
+            this.btnCleartask.ForeDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnCleartask.ForeHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
+            this.btnCleartask.ForePressColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
+            this.btnCleartask.ForeSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
             this.btnCleartask.Location = new System.Drawing.Point(807, 94);
             this.btnCleartask.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCleartask.Name = "btnCleartask";
-            this.btnCleartask.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.btnCleartask.RectDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
-            this.btnCleartask.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
-            this.btnCleartask.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
-            this.btnCleartask.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(1)))), ((int)(((byte)(26)))));
+            this.btnCleartask.RectColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
+            this.btnCleartask.RectDisableColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
+            this.btnCleartask.RectHoverColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
+            this.btnCleartask.RectPressColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
+            this.btnCleartask.RectSelectedColor = System.Drawing.Color.FromArgb(((int) (((byte) (252)))), ((int) (((byte) (1)))), ((int) (((byte) (26)))));
             this.btnCleartask.Size = new System.Drawing.Size(112, 51);
             this.btnCleartask.Style = Sunny.UI.UIStyle.Custom;
             this.btnCleartask.StyleCustomMode = true;
             this.btnCleartask.Symbol = 361944;
             this.btnCleartask.TabIndex = 33;
             this.btnCleartask.Text = "清空任务";
-            this.btnCleartask.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnCleartask.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.btnCleartask.Click += new System.EventHandler(this.btnCleartask_Click);
             // 
             // tooltipPic
             // 
-            this.tooltipPic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.tooltipPic.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tooltipPic.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tooltipPic.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (54)))), ((int) (((byte) (54)))), ((int) (((byte) (54)))));
+            this.tooltipPic.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.tooltipPic.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.tooltipPic.OwnerDraw = true;
-            this.tooltipPic.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.tooltipPic.RectColor = System.Drawing.Color.FromArgb(((int) (((byte) (54)))), ((int) (((byte) (54)))), ((int) (((byte) (54)))));
             // 
             // progressInfo
             // 
@@ -541,7 +538,7 @@ namespace X.Lucifer.LosslessZoom
             this.progressInfo.MinimumSize = new System.Drawing.Size(1, 1);
             this.progressInfo.Name = "progressInfo";
             this.progressInfo.Outer = 36;
-            this.progressInfo.ProcessBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.progressInfo.ProcessBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.progressInfo.Radius = 0;
             this.progressInfo.ShowFocusColor = true;
             this.progressInfo.ShowProcess = true;
@@ -554,7 +551,7 @@ namespace X.Lucifer.LosslessZoom
             // lblTaskAll
             // 
             this.lblTaskAll.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.lblTaskAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblTaskAll.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblTaskAll.Location = new System.Drawing.Point(664, 611);
             this.lblTaskAll.Name = "lblTaskAll";
             this.lblTaskAll.Size = new System.Drawing.Size(74, 23);
@@ -567,7 +564,7 @@ namespace X.Lucifer.LosslessZoom
             // lblTaskRemain
             // 
             this.lblTaskRemain.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.lblTaskRemain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblTaskRemain.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblTaskRemain.Location = new System.Drawing.Point(664, 646);
             this.lblTaskRemain.Name = "lblTaskRemain";
             this.lblTaskRemain.Size = new System.Drawing.Size(74, 23);
@@ -580,7 +577,7 @@ namespace X.Lucifer.LosslessZoom
             // lblTotaltime
             // 
             this.lblTotaltime.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.lblTotaltime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblTotaltime.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblTotaltime.Location = new System.Drawing.Point(385, 647);
             this.lblTotaltime.Name = "lblTotaltime";
             this.lblTotaltime.Size = new System.Drawing.Size(81, 23);
@@ -593,7 +590,7 @@ namespace X.Lucifer.LosslessZoom
             // lblStart
             // 
             this.lblStart.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.lblStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblStart.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (244)))), ((int) (((byte) (244)))), ((int) (((byte) (244)))));
             this.lblStart.Location = new System.Drawing.Point(385, 612);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(81, 23);
@@ -605,11 +602,11 @@ namespace X.Lucifer.LosslessZoom
             // 
             // ledTotaltime
             // 
-            this.ledTotaltime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.ledTotaltime.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.ledTotaltime.BorderColor = System.Drawing.Color.Transparent;
             this.ledTotaltime.BorderInColor = System.Drawing.Color.Transparent;
             this.ledTotaltime.CharCount = 8;
-            this.ledTotaltime.Font = new System.Drawing.Font("宋体", 11F);
+            this.ledTotaltime.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.ledTotaltime.ForeColor = System.Drawing.Color.LimeGreen;
             this.ledTotaltime.IntervalV = 3;
             this.ledTotaltime.Location = new System.Drawing.Point(474, 643);
@@ -622,11 +619,11 @@ namespace X.Lucifer.LosslessZoom
             // 
             // ledStarttime
             // 
-            this.ledStarttime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
+            this.ledStarttime.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (37)))), ((int) (((byte) (43)))));
             this.ledStarttime.BorderColor = System.Drawing.Color.Transparent;
             this.ledStarttime.BorderInColor = System.Drawing.Color.Transparent;
             this.ledStarttime.CharCount = 8;
-            this.ledStarttime.Font = new System.Drawing.Font("宋体", 11F);
+            this.ledStarttime.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.ledStarttime.ForeColor = System.Drawing.Color.LimeGreen;
             this.ledStarttime.IntervalV = 3;
             this.ledStarttime.Location = new System.Drawing.Point(474, 608);
@@ -662,16 +659,11 @@ namespace X.Lucifer.LosslessZoom
             this.lblxFinished.TabStop = false;
             this.lblxFinished.Text = "-";
             // 
-            // uiStyleManager
-            // 
-            this.uiStyleManager.DPIScale = true;
-            this.uiStyleManager.GlobalFont = true;
-            // 
             // FormMain
             // 
             this.AllowAddControlOnTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.ClientSize = new System.Drawing.Size(945, 694);
             this.CloseAskString = "";
             this.Controls.Add(this.lblxFinished);
@@ -708,17 +700,16 @@ namespace X.Lucifer.LosslessZoom
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.navbarMenu);
             this.ForeColor = System.Drawing.Color.White;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "FormMain";
-            this.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.RectColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.Style = Sunny.UI.UIStyle.Custom;
             this.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.TitleColor = System.Drawing.Color.FromArgb(((int) (((byte) (40)))), ((int) (((byte) (44)))), ((int) (((byte) (52)))));
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 944, 679);
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -758,7 +749,6 @@ namespace X.Lucifer.LosslessZoom
         private Sunny.UI.UILedStopwatch ledStarttime;
         private Sunny.UI.UILedLabel lblxTotal;
         private Sunny.UI.UILedLabel lblxFinished;
-        private Sunny.UI.UIStyleManager uiStyleManager;
     }
 }
 
