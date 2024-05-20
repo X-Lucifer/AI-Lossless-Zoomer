@@ -45,6 +45,12 @@ public partial class FormMain : UIForm
         Load += async (_, _) => await FormMain_Load();
     }
 
+    ~FormMain()
+    {
+        Dispose();
+        GC.SuppressFinalize(this);
+    }
+
     /// <summary>
     /// 加载
     /// </summary>
@@ -261,16 +267,15 @@ public partial class FormMain : UIForm
 
     private void ChangeLang(Language lang = Language.Chinese)
     {
-        SetLanguage(lang);
         if (lang == Language.Chinese)
         {
             _pack = new LangPack();
-            this.ShowInfoTip(_pack.FormMain_Change_Lang);
+            this.ShowInfoTip(_pack.FormMain_Change_Lang, 2000);
         }
         else
         {
             _pack = new LangPackEnglish();
-            this.ShowInfoTip(_pack.FormMain_Change_Lang);
+            this.ShowInfoTip(_pack.FormMain_Change_Lang, 2000);
         }
 
         _option.Lang = lang;
@@ -358,7 +363,7 @@ public partial class FormMain : UIForm
     /// </summary>
     private void ShowCopyright()
     {
-        using var form = new FormCopyright(_pack);
+        var form = new FormCopyright(_pack);
         form.ShowDialog(this);
     }
 
@@ -367,7 +372,7 @@ public partial class FormMain : UIForm
     /// </summary>
     private void ShowAbout()
     {
-        using var form = new FormAbout(_pack);
+        var form = new FormAbout(_pack);
         form.ShowDialog(this);
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
 using Sunny.UI;
@@ -12,6 +13,12 @@ public partial class FormAbout : UIForm
     {
         _pack = pack;
         InitializeComponent();
+    }
+
+    ~FormAbout()
+    {
+        Dispose();
+        GC.SuppressFinalize(this);
     }
 
     private void FormAbout_Load(object sender, System.EventArgs e)

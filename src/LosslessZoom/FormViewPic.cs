@@ -18,6 +18,12 @@ public partial class FormViewPic : UIForm
         InitializeComponent();
     }
 
+    ~ FormViewPic()
+    {
+        Dispose();
+        GC.SuppressFinalize(this);
+    }
+
     private void FormViewPic_Load(object sender, EventArgs e)
     {
         Text = _pack.FormViewPic_Title;

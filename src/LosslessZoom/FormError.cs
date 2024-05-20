@@ -19,6 +19,12 @@ public partial class FormError : UIForm
         InitializeComponent();
     }
 
+    ~FormError()
+    {
+        Dispose();
+        GC.SuppressFinalize(this);
+    }
+
     private void FormError_Load(object sender, EventArgs e)
     {
         txtError.Text = Message ?? "";

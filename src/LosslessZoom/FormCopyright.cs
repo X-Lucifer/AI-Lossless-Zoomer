@@ -16,6 +16,12 @@ public partial class FormCopyright : UIForm
         InitializeComponent();
     }
 
+    ~FormCopyright()
+    {
+        Dispose();
+        GC.SuppressFinalize(this);
+    }
+
     private void FormCopyright_Load(object sender, EventArgs e)
     {
         Text = _pack.FormCopyright_Title;

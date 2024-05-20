@@ -36,7 +36,7 @@ public static class ApiExtensions
         var path = Path.Combine(AppContext.BaseDirectory, "fonts.ttf");
         using var pfc = new PrivateFontCollection();
         pfc.AddFontFile(path);
-        var font = new Font(pfc.Families[0], 11F, FontStyle.Regular, GraphicsUnit.Point);
+        var font = new Font(pfc.Families[0], 10.5F, FontStyle.Regular, GraphicsUnit.Point);
         return font;
     }
 
