@@ -79,9 +79,9 @@ namespace X.Lucifer.LosslessZoom
             this.Text = "错误信息";
             this.TextAlignment = System.Drawing.StringAlignment.Center;
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.Load += new System.EventHandler(this.FormError_Load);
+            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Load += (s, e) => FormError_Load(s, e);
             this.ResumeLayout(false);
-
         }
 
         #endregion

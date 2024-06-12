@@ -68,143 +68,146 @@ public class LangPackEnglish : ILangPack
     public string FormOption_ComboxItem_Default => "Default";
 
     /// <inheritdoc />
-    public string FormMain_Title { get; } = "AI Lossless Zoomer";
+    public string FormMain_Title => "AI Lossless Zoomer";
 
     /// <inheritdoc />
-    public string FormMain_Init_Config { get; } = "Load config success.";
+    public string FormMain_Init_Config => "Load config success.";
 
     /// <inheritdoc />
-    public string FormMain_OpenFile { get; } = "Open";
+    public string FormMain_OpenFile => "Open";
 
     /// <inheritdoc />
-    public string FormMain_Options { get; } = "Options";
+    public string FormMain_Options => "Options";
 
     /// <inheritdoc />
-    public string FormMain_Exit { get; } = "Exit";
+    public string FormMain_Exit => "Exit";
 
     /// <inheritdoc />
-    public string FormMain_About { get; } = "About";
+    public string FormMain_About => "About";
 
     /// <inheritdoc />
-    public string FormMain_Copyright { get; } = "Copyright";
+    public string FormMain_Copyright => "Copyright";
 
     /// <inheritdoc />
-    public string FormMain_Init_Menu { get; } = "Loading menu succeeded.";
+    public string FormMain_Init_Menu => "Loading menu succeeded.";
 
     /// <inheritdoc />
-    public string FormMain_Init_Engine { get; } = "The AI engine is loaded successfully.";
+    public string FormMain_Init_Engine => "The AI engine is loaded successfully.";
 
     /// <inheritdoc />
-    public string FormMain_Engine_Fail { get; } = "The AI engine failed to load.";
+    public string FormMain_Engine_Fail => "The AI engine failed to load.";
 
     /// <inheritdoc />
-    public string FormMain_Change_Lang { get; } = "The current UI language has been switched to English.";
+    public string FormMain_Change_Lang => "The current UI language has been switched to English.";
 
     /// <inheritdoc />
-    public string FormMain_Change_Config { get; } = "Configuration changes succeeded.";
+    public string FormMain_Change_Config => "Configuration changes succeeded.";
 
     /// <inheritdoc />
-    public string FormMain_Log_Open_File { get; } = "Open file:";
+    public string FormMain_Log_Open_File => "Open file:";
 
     /// <inheritdoc />
-    public string FormMain_Log_Add_File_Error { get; } = "The total number of tasks cannot exceed 100.";
+    public string FormMain_Log_Add_File_Error => "The total number of tasks cannot exceed 100.";
 
     /// <inheritdoc />
-    public string FormMain_Remove_Task { get; } = "Remove task:";
+    public string FormMain_Remove_Task => "Remove task:";
 
     /// <inheritdoc />
-    public string FormMain_File_Name { get; } = "Filename";
+    public string FormMain_File_Name => "Filename";
 
     /// <inheritdoc />
-    public string FormMain_Init_Hard_Info { get; } = "Initialize hardware information.";
+    public string FormMain_Init_Hard_Info => "Initialize hardware information.";
 
     /// <inheritdoc />
-    public string FormMain_Init_System_Info { get; } = "Loading system information succeeded.";
+    public string FormMain_Init_System_Info => "Loading system information succeeded.";
 
     /// <inheritdoc />
-    public string FormMain_Init_Cpu_Info { get; } = "Loading the processor information succeeded.";
+    public string FormMain_Init_Cpu_Info => "Loading the processor information succeeded.";
 
     /// <inheritdoc />
-    public string FormMain_Init_Graphics_Info { get; } = "The graphics card information is loaded successfully. ";
+    public string FormMain_Init_Graphics_Info => "The graphics card information is loaded successfully. ";
 
     /// <inheritdoc />
-    public string FormMain_Init_Others_Info { get; } = "Loading other information succeeded.";
+    public string FormMain_Init_Others_Info => "Loading other information succeeded.";
 
     /// <inheritdoc />
-    public string FormMain_All_Task_Count { get; } = "Total number of tasks:";
+    public string FormMain_All_Task_Count => "Total number of tasks:";
 
     /// <inheritdoc />
-    public string FormMain_Task { get; } = "Tasks:";
+    public string FormMain_Task => "Tasks:";
 
     /// <inheritdoc />
-    public string FormMain_Wait_Execute_Task { get; } = ", has been added and is waiting to be executed.";
+    public string FormMain_Wait_Execute_Task => ", has been added and is waiting to be executed.";
 
     /// <inheritdoc />
-    public string FormMain_Start_Execute_Task { get; } = ", the task has started.";
+    public string FormMain_Start_Execute_Task => ", the task has started.";
 
     /// <inheritdoc />
-    public string FormMain_Remain_Task_Count { get; } = "Remain:";
+    public string FormMain_Remain_Task_Count => "Remain:";
 
     /// <inheritdoc />
-    public string FormMain_Finished_Task_Count { get; } = "Completed:";
+    public string FormMain_Finished_Task_Count => "Completed:";
 
     /// <inheritdoc />
-    public string FormMain_Exception { get; } = "Exception message:";
+    public string FormMain_Exception => "Exception message:";
 
     /// <inheritdoc />
-    public string FormMain_Task_Start { get; } = "The mission begins.";
+    public string FormMain_Task_Start => "The mission begins.";
 
     /// <inheritdoc />
-    public string FormMain_Task_Finished { get; } = "Mission complete.";
+    public string FormMain_Task_Finished => "Mission complete.";
 
     /// <inheritdoc />
-    public string FormMain_Clear_Finished_Task { get; } = "Clean up completed tasks.";
+    public string FormMain_Clear_Finished_Task => "Clean up completed tasks.";
 
     /// <inheritdoc />
-    public string FormMain_Clear_Logs { get; } = "Clear log";
+    public string FormMain_Clear_Logs => "Clear log";
 
     /// <inheritdoc />
-    public string FormMain_Clear_All_Task { get; } = "Clear task";
+    public string FormMain_Clear_All_Task => "Clear task";
 
     /// <inheritdoc />
-    public string FormMain_Has_Finished { get; } = "It's already done.";
+    public string FormMain_Has_Finished => "It's already done.";
 
     /// <inheritdoc />
-    public string FormMain_lblVideoname { get; } = "Graphics:";
+    public string FormMain_lblVideoname => "Graphics:";
 
     /// <inheritdoc />
-    public string FormMain_lblCpuLogic { get; } = "Logic CPU:";
+    public string FormMain_lblCpuLogic => "Logic CPU:";
 
     /// <inheritdoc />
-    public string FormMain_lblCpu { get; } = "CPU Count:";
+    public string FormMain_lblCpu => "CPU Count:";
 
     /// <inheritdoc />
-    public string FormMain_lblProcessor { get; } = "CPU:";
+    public string FormMain_lblProcessor => "CPU:";
 
     /// <inheritdoc />
-    public string FormMain_lblBrand { get; } = "Brand:";
+    public string FormMain_lblBrand => "Brand:";
 
     /// <inheritdoc />
-    public string FormMain_lblSysname { get; } = "System:";
+    public string FormMain_lblSysname => "System:";
 
     /// <inheritdoc />
-    public string FormMain_btnProcess { get; } = "Start";
+    public string FormMain_btnProcess => "Start";
 
     /// <inheritdoc />
-    public string FormMain_btnClearlog { get; } = "DEL Logs";
+    public string FormMain_btnClearlog => "DEL Logs";
 
     /// <inheritdoc />
-    public string FormMain_btnCleartask { get; } = "DEL Tasks";
+    public string FormMain_btnCleartask => "DEL Tasks";
 
     /// <inheritdoc />
-    public string FormMain_lblTaskAll { get; } = "Total:";
+    public string FormMain_lblTaskAll => "Total:";
 
     /// <inheritdoc />
-    public string FormMain_lblTaskRemain { get; } = "Finished:";
+    public string FormMain_lblTaskRemain => "Finished:";
 
     /// <inheritdoc />
-    public string FormMain_lblTotaltime { get; } = "Spend:";
+    public string FormMain_lblTotaltime => "Spend:";
 
     /// <inheritdoc />
-    public string FormMain_lblStart { get; } = "Start:";
+    public string FormMain_lblStart => "Start:";
+
+    /// <inheritdoc />
+    public string RunAsAdmin => "Please run the program as an administrator";
 }

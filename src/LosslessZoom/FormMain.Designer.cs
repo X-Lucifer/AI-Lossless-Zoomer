@@ -700,6 +700,7 @@ namespace X.Lucifer.LosslessZoom
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.navbarMenu);
             this.ForeColor = System.Drawing.Color.White;
+            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;

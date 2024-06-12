@@ -106,6 +106,6 @@ public interface ILangPack
     string FormMain_lblTaskRemain { get; }
     string FormMain_lblTotaltime { get; }
     string FormMain_lblStart { get; }
-
+    string RunAsAdmin { get; }
     #endregion
 }

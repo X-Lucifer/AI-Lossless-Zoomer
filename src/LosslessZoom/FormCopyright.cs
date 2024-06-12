@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using Sunny.UI;
 
 namespace X.Lucifer.LosslessZoom;
@@ -26,6 +27,5 @@ public partial class FormCopyright : UIForm
     {
         Text = _pack.FormCopyright_Title;
         txtInfo.Text = _pack.FormCopyright_txtInfo;
-        ApiExtensions.ChangeFonts(Controls);
     }
 }

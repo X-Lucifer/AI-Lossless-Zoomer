@@ -207,4 +207,7 @@ public class LangPack : ILangPack
 
     /// <inheritdoc />
     public string FormMain_lblStart => "任务开始:";
+
+    /// <inheritdoc />
+    public string RunAsAdmin => "请以管理员身份运行该程序";
 }

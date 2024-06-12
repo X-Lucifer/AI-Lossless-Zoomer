@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
+using System.Threading.Tasks;
 using Sunny.UI;
 
 namespace X.Lucifer.LosslessZoom;
@@ -33,7 +34,6 @@ public partial class FormAbout : UIForm
         lblTitle.Text = _pack.FormAbout_lblTitle;
         lblxVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         lblxCopyright.Text = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright;
-        ApiExtensions.ChangeFonts(Controls);
     }
 
     private void lblxAuthor_Click(object sender, System.EventArgs e)

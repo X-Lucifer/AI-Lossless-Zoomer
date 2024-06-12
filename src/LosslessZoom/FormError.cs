@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using Sunny.UI;
 
 namespace X.Lucifer.LosslessZoom;
@@ -28,6 +29,5 @@ public partial class FormError : UIForm
     private void FormError_Load(object sender, EventArgs e)
     {
         txtError.Text = Message ?? "";
-        ApiExtensions.ChangeFonts(Controls);
     }
 }

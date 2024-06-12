@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
 
@@ -27,14 +28,11 @@ public partial class FormViewPic : UIForm
     private void FormViewPic_Load(object sender, EventArgs e)
     {
         Text = _pack.FormViewPic_Title;
-        var pic = new PictureBox
-        {
-            Image = _pic.Image,
-            Dock = DockStyle.Fill,
-            SizeMode = PictureBoxSizeMode.Zoom
-        };
+        var pic = new PictureBox();
+        pic.Image = _pic.Image;
+        pic.Dock = DockStyle.Fill;
+        pic.SizeMode = PictureBoxSizeMode.Zoom;
         panelPic.Controls.Add(pic);
         lblPicname.Text = _pic.Text;
-        ApiExtensions.ChangeFonts(Controls);
     }
 }

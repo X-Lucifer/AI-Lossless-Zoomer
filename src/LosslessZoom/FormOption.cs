@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
 using TG.INI.Serialization;
@@ -84,11 +85,6 @@ public partial class FormOption : UIEditForm
             {
                 Id = "2",
                 Name = "PNG"
-            },
-            new()
-            {
-                Id = "3",
-                Name = "WebP"
             }
         };
         Text = _pack.FormOption_Title;
@@ -111,7 +107,6 @@ public partial class FormOption : UIEditForm
         rbDefault.CheckedChanged += RbDir_CheckedChanged;
         rbManual.CheckedChanged += RbDir_CheckedChanged;
         btnOK.Click += BtnOK_Click;
-        ApiExtensions.ChangeFonts(Controls);
     }
 
     private void RbDir_CheckedChanged(object sender, EventArgs e)

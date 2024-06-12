@@ -290,7 +290,8 @@ namespace X.Lucifer.LosslessZoom
             this.Style = Sunny.UI.UIStyle.Custom;
             this.TextAlignment = System.Drawing.StringAlignment.Center;
             this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.Load += new System.EventHandler(this.FormOption_Load);
+            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Load += (s, e) => FormOption_Load(s,e);
             this.Controls.SetChildIndex(this.pnlBtm, 0);
             this.Controls.SetChildIndex(this.lblAppendExt, 0);
             this.Controls.SetChildIndex(this.lblModule, 0);

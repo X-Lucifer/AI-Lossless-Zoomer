@@ -6,11 +6,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NLog;
 using Sunny.UI;
 using TG.INI;
 using TG.INI.Serialization;
@@ -21,8 +19,8 @@ namespace X.Lucifer.LosslessZoom;
 
 public partial class FormMain : UIForm
 {
+    public bool IsAdmin = false;
     private readonly string _outdir = AppContext.BaseDirectory + @"output\";
-
     private readonly List<string> _formats =
     [
         ".jpg",
@@ -36,12 +34,13 @@ public partial class FormMain : UIForm
     private readonly List<int> _processlist;
     private bool _isai;
     private bool _isrun;
-    private ILangPack _pack = new LangPack();
+    private ILangPack _pack;
     public FormMain()
     {
         _processlist = [];
         _option = new RuntimeOption();
         _files = [];
+        LoadIni();
         InitializeComponent();
         Load += async (_, _) => await FormMain_Load();
     }
@@ -57,8 +56,8 @@ public partial class FormMain : UIForm
     /// </summary>
     private async Task FormMain_Load()
     {
-        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
         this.ShowProcessForm();
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
         FormClosed += async (_, _) => await FormMain_FormClosed();
         panelInfo.DragDrop += async (_, x) => await panelInfo_DragDrop(x);
         timer.Tick += Timer_Tick;
@@ -104,6 +103,10 @@ public partial class FormMain : UIForm
         else
         {
             this.HideProcessForm();
+        }
+        if (!IsAdmin)
+        {
+            this.ShowErrorDialog(_pack.RunAsAdmin);
         }
     }
 
@@ -166,6 +169,14 @@ public partial class FormMain : UIForm
     /// </summary>
     private bool LoadConfig()
     {
+        SetLanguage(_option.Lang);
+        LoadUiLang(_pack);
+        WriteLog(_pack.FormMain_Init_Config);
+        return true;
+    }
+
+    private void LoadIni()
+    {
         var file = AppContext.BaseDirectory + "config.ini";
         if (!File.Exists(file))
         {
@@ -182,10 +193,6 @@ public partial class FormMain : UIForm
         using var xdoc = new IniDocument(file);
         _option = IniSerialization.DeserializeDocument<RuntimeOption>(xdoc);
         _pack = _option.Lang == Language.Chinese ? new LangPack() : new LangPackEnglish();
-        SetLanguage(_option.Lang);
-        LoadUiLang(_pack);
-        WriteLog(_pack.FormMain_Init_Config);
-        return true;
     }
 
     /// <summary>
@@ -246,8 +253,6 @@ public partial class FormMain : UIForm
             topindex++;
         }
         navbarMenu.ResetFont();
-        navbarMenu.DropMenuFont = GetFonts();
-        navbarMenu.Font = GetFonts();
         navbarMenu.MenuItemClick += async (_, _, index) => await NavbarMenu_MenuItemClick(index);
         WriteLog(_pack.FormMain_Init_Menu);
         return true;
@@ -273,7 +278,6 @@ public partial class FormMain : UIForm
                 {
                     this.ShowErrorTip(_pack.FormMain_Engine_Fail);
                 }
-
                 break;
             case 3:
                 await Exit();
@@ -315,7 +319,6 @@ public partial class FormMain : UIForm
 
     private void LoadUiLang(ILangPack lang)
     {
-        ChangeFonts(Controls);
         BeginInvoke((Action<string>) (x =>
         {
             Text = x;
@@ -414,7 +417,7 @@ public partial class FormMain : UIForm
             return;
         }
 
-        using var form = new FormOption(_option, _pack);
+        var form = new FormOption(_option, _pack);
         form.OnSaved += FormOption_OnSaved;
         form.ShowDialog(this);
     }
@@ -517,7 +520,6 @@ public partial class FormMain : UIForm
                 FillHoverColor = Color.FromArgb(232, 127, 128),
                 FillPressColor = Color.FromArgb(202, 87, 89),
                 FillSelectedColor = Color.FromArgb(202, 87, 89),
-                Font = new Font("微软雅黑", 12F),
                 IsCircle = true,
                 MinimumSize = new Size(1, 1),
                 Name = $"rem_{_picid}",
@@ -600,25 +602,24 @@ public partial class FormMain : UIForm
     {
         try
         {
-            const string ainame = @"realesrgan\realesrgan-ncnn-vulkan.exe";
-            var sinfo = new ProcessStartInfo(ainame)
+            var file_list = new List<string>
             {
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                RedirectStandardInput = true,
-                StandardOutputEncoding = Encoding.GetEncoding("GB2312"),
-                StandardErrorEncoding = Encoding.GetEncoding("GB2312"),
-                Verb = "runas",
-                Arguments = "-h",
-                WorkingDirectory = AppContext.BaseDirectory
+                @"realesrgan\realesrgan-ncnn-vulkan.exe",
+                @"realesrgan\vcomp140.dll",
+                @"realesrgan\vcomp140d.dll",
+                @"realesrgan\models\realesr-animevideov3-x2.bin",
+                @"realesrgan\models\realesr-animevideov3-x3.bin",
+                @"realesrgan\models\realesr-animevideov3-x4.bin",
+                @"realesrgan\models\realesrgan-x4plus.bin",
+                @"realesrgan\models\realesrgan-x4plus-anime.bin",
+                @"realesrgan\models\realesr-animevideov3-x2.param",
+                @"realesrgan\models\realesr-animevideov3-x3.param",
+                @"realesrgan\models\realesr-animevideov3-x4.param",
+                @"realesrgan\models\realesrgan-x4plus.param",
+                @"realesrgan\models\realesrgan-x4plus-anime.param"
             };
-            using var process = new Process();
-            process.StartInfo = sinfo;
-            process.EnableRaisingEvents = true;
-            var status = process.Start();
-
+            var fail = file_list.Select(file => Path.Combine(AppContext.BaseDirectory, file)).Count(path => !File.Exists(path));
+            var status = fail == 0;
             WriteLog(status ? _pack.FormMain_Init_Engine : _pack.FormMain_Engine_Fail);
             return status;
         }
@@ -729,8 +730,6 @@ public partial class FormMain : UIForm
             {
                 txtLog.Text = string.Empty;
             }
-
-            txtLog.Font = GetFonts();
             txtLog.AppendText($"[{DateTime.Now:G}] | {x}{Environment.NewLine}");
             txtLog.ScrollToCaret();
         }), txt, isclear);
@@ -958,8 +957,7 @@ public partial class FormMain : UIForm
                         RedirectStandardError = true,
                         RedirectStandardOutput = true,
                         RedirectStandardInput = true,
-                        Arguments = _option.OutDirPath,
-                        Verb = "runas"
+                        Arguments = _option.OutDirPath
                     };
                     using var process = new Process();
                     process.StartInfo = sinfo;
@@ -1010,6 +1008,7 @@ public partial class FormMain : UIForm
     {
         var process = (Process)sender;
         _processlist.Remove(process.Id);
+        GC.Collect();
     }
 
     /// <summary>
