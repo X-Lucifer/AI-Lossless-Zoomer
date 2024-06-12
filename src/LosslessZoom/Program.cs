@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -14,26 +15,23 @@ static class Program
     {
         try
         {
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException, true);
             Application.ThreadException += Application_ThreadException;
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            LogManager.Setup().RegisterWindowsForms();
             Application.Run(new FormMain());
         }
         catch (Exception e)
         {
+            LogError(e);
             ShowError(e.Message);
         }
     }
 
-    private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-    {
-        ShowError(e.ExceptionObject.ToString());
-    }
-
     private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
     {
+        LogError(e.Exception);
         ShowError(e.Exception.Message);
     }
 
@@ -44,5 +42,11 @@ static class Program
             Message = msg
         };
         form.ShowDialog();
+    }
+
+    private static void LogError(Exception e)
+    {
+        var log = LogManager.GetCurrentClassLogger();
+        log.Error(e);
     }
 }

@@ -3,7 +3,9 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Windows.Forms;
+using NLog;
 using Sunny.UI;
+using XLogLevel = NLog.LogLevel;
 
 namespace X.Lucifer.LosslessZoom;
 

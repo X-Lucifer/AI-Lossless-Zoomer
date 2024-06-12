@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NLog;
 using Sunny.UI;
 using TG.INI;
 using TG.INI.Serialization;
@@ -56,22 +57,54 @@ public partial class FormMain : UIForm
     /// </summary>
     private async Task FormMain_Load()
     {
+        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
         this.ShowProcessForm();
-        await Task.Run(LoadConfig);
         FormClosed += async (_, _) => await FormMain_FormClosed();
         panelInfo.DragDrop += async (_, x) => await panelInfo_DragDrop(x);
         timer.Tick += Timer_Tick;
         timer.Start();
-        _isai = await Task.FromResult(CheckEngine());
-        await Task.Run(LoadMenu);
+        var task_load_config = new Task<bool>(LoadConfig, cts.Token);
+        var task_check_engine = new Task<bool>(CheckEngine, cts.Token);
+        var task_load_menu = new Task<bool>(LoadMenu, cts.Token);
+        var task_load_hard = new Task<bool>(LoadHardInfo, cts.Token);
+        var tasks = new Task[]
+        {
+            task_load_config,
+            task_check_engine,
+            task_load_menu,
+            task_load_hard
+        };
+        foreach (var task in tasks)
+        {
+            task.Start();
+        }
+
+        Task.WaitAll(tasks);
+        _isai = task_check_engine.Result;
+        var is_load_hard = task_load_hard.Result;
+        var is_load_config = task_load_config.Result;
+        var is_load_menu = task_load_menu.Result;
         if (_isai)
         {
             btnProcess.Click += async (_, _) => await btnProcess_Click();
         }
 
         Text = _pack.FormMain_Title;
-        await Task.Run(LoadHardInfo);
-        this.HideProcessForm();
+        var retry = 1;
+        do
+        {
+            await Task.Delay(1000 * retry, cts.Token);
+            retry++;
+        } while ((!is_load_config || !_isai || !is_load_menu || !is_load_hard) && retry < 3);
+
+        if (!is_load_config || !_isai || !is_load_menu || !is_load_hard)
+        {
+            await FormMain_FormClosed();
+        }
+        else
+        {
+            this.HideProcessForm();
+        }
     }
 
     /// <summary>
@@ -131,7 +164,7 @@ public partial class FormMain : UIForm
     /// <summary>
     /// 加载配置
     /// </summary>
-    private void LoadConfig()
+    private bool LoadConfig()
     {
         var file = AppContext.BaseDirectory + "config.ini";
         if (!File.Exists(file))
@@ -148,23 +181,17 @@ public partial class FormMain : UIForm
 
         using var xdoc = new IniDocument(file);
         _option = IniSerialization.DeserializeDocument<RuntimeOption>(xdoc);
-        if (_option.Lang == Language.Chinese)
-        {
-            _pack = new LangPack();
-        }
-        else
-        {
-            _pack = new LangPackEnglish();
-        }
+        _pack = _option.Lang == Language.Chinese ? new LangPack() : new LangPackEnglish();
         SetLanguage(_option.Lang);
         LoadUiLang(_pack);
         WriteLog(_pack.FormMain_Init_Config);
+        return true;
     }
 
     /// <summary>
     /// 加载菜单
     /// </summary>
-    private void LoadMenu()
+    private bool LoadMenu()
     {
         navbarMenu.Nodes.AddRange
         (
@@ -223,6 +250,7 @@ public partial class FormMain : UIForm
         navbarMenu.Font = GetFonts();
         navbarMenu.MenuItemClick += async (_, _, index) => await NavbarMenu_MenuItemClick(index);
         WriteLog(_pack.FormMain_Init_Menu);
+        return true;
     }
 
     /// <summary>
@@ -604,7 +632,7 @@ public partial class FormMain : UIForm
     /// <summary>
     /// 加载硬件信息
     /// </summary>
-    private void LoadHardInfo()
+    private bool LoadHardInfo()
     {
         WriteLog(_pack.FormMain_Init_Hard_Info);
         LoadHardInfo("Win32_ComputerSystem", WmiType.WIN32_COMPUTER_SYSTEM, out var system);
@@ -617,20 +645,20 @@ public partial class FormMain : UIForm
         WriteLog(_pack.FormMain_Init_Others_Info);
 
         //更新系统名称
-        lblxsysname.BeginInvoke((Action<string>)(x => { lblxsysname.Text = x; }), os["Caption"]?.ToString());
+        lblxsysname.BeginInvoke((Action<string>) (x => { lblxsysname.Text = x; }), os["Caption"]?.ToString());
 
         //更新处理器
-        lblxprocessor.BeginInvoke((Action<string>)(x => { lblxprocessor.Text = x; }), processor["Name"]?.ToString());
+        lblxprocessor.BeginInvoke((Action<string>) (x => { lblxprocessor.Text = x; }), processor["Name"]?.ToString());
 
         //更新物理核心
-        lblxcpu.BeginInvoke((Action<string>)(x => { lblxcpu.Text = x; }), processor["NumberOfCores"]?.ToString());
+        lblxcpu.BeginInvoke((Action<string>) (x => { lblxcpu.Text = x; }), processor["NumberOfCores"]?.ToString());
 
         //更新逻辑核心
-        lblxcpulogic.BeginInvoke((Action<string>)(x => { lblxcpulogic.Text = x; }),
+        lblxcpulogic.BeginInvoke((Action<string>) (x => { lblxcpulogic.Text = x; }),
             processor["NumberOfLogicalProcessors"]?.ToString());
 
         //更新显卡
-        lblxvideo.BeginInvoke((Action<string>)(x => { lblxvideo.Text = x; }), video["Caption"]?.ToString());
+        lblxvideo.BeginInvoke((Action<string>) (x => { lblxvideo.Text = x; }), video["Caption"]?.ToString());
 
         //更新品牌
         var sysfam = system["SystemFamily"]?.ToString();
@@ -639,7 +667,8 @@ public partial class FormMain : UIForm
             string.IsNullOrEmpty(sysfam) || sysfam.Equals("Default string", StringComparison.OrdinalIgnoreCase)
                 ? !string.IsNullOrEmpty(manufac) ? manufac : @"-"
                 : sysfam;
-        lblxbrand.BeginInvoke((Action<string>)(x => { lblxbrand.Text = x; }), brand);
+        lblxbrand.BeginInvoke((Action<string>) (x => { lblxbrand.Text = x; }), brand);
+        return true;
     }
 
     /// <summary>

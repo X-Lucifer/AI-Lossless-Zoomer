@@ -20,7 +20,7 @@ public partial class FormViewPic : UIForm
 
     ~ FormViewPic()
     {
-        Dispose();
+        Dispose(true);
         GC.SuppressFinalize(this);
     }
 
