@@ -34,12 +34,14 @@ namespace X.Lucifer.LosslessZoom
             this.lblModule = new Sunny.UI.UILabel();
             this.lblFormat = new Sunny.UI.UILabel();
             this.lblOutDir = new Sunny.UI.UILabel();
+            this.lblGpu = new Sunny.UI.UILabel();
             this.txtAppendExt = new Sunny.UI.UITextBox();
             this.cbxModule = new Sunny.UI.UIComboBox();
             this.rbDefault = new Sunny.UI.UIRadioButton();
             this.rbManual = new Sunny.UI.UIRadioButton();
             this.btnBrowser = new Sunny.UI.UISymbolButton();
             this.cbxFormat = new Sunny.UI.UIComboBox();
+            this.cbxGpu = new Sunny.UI.UIComboBox();
             this.txtOutDir = new Sunny.UI.UIRichTextBox();
             this.pnlBtm.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +53,7 @@ namespace X.Lucifer.LosslessZoom
             this.pnlBtm.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.pnlBtm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.pnlBtm.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.pnlBtm.Location = new System.Drawing.Point(-1, 279);
+            this.pnlBtm.Location = new System.Drawing.Point(-1, 323);
             this.pnlBtm.Margin = new System.Windows.Forms.Padding(0);
             this.pnlBtm.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.pnlBtm.RectDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
@@ -94,7 +96,7 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblFormat.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.lblFormat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblFormat.Location = new System.Drawing.Point(69, 140);
+            this.lblFormat.Location = new System.Drawing.Point(69, 184);
             this.lblFormat.Name = "lblFormat";
             this.lblFormat.Size = new System.Drawing.Size(100, 23);
             this.lblFormat.Style = Sunny.UI.UIStyle.Custom;
@@ -105,12 +107,23 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.lblOutDir.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.lblOutDir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.lblOutDir.Location = new System.Drawing.Point(69, 184);
+            this.lblOutDir.Location = new System.Drawing.Point(69, 228);
             this.lblOutDir.Name = "lblOutDir";
             this.lblOutDir.Size = new System.Drawing.Size(100, 23);
             this.lblOutDir.Style = Sunny.UI.UIStyle.Custom;
             this.lblOutDir.TabIndex = 2;
             this.lblOutDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblGpu
+            // 
+            this.lblGpu.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblGpu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.lblGpu.Location = new System.Drawing.Point(69, 140);
+            this.lblGpu.Name = "lblGpu";
+            this.lblGpu.Size = new System.Drawing.Size(100, 23);
+            this.lblGpu.Style = Sunny.UI.UIStyle.Custom;
+            this.lblGpu.TabIndex = 2;
+            this.lblGpu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtAppendExt
             // 
@@ -167,7 +180,7 @@ namespace X.Lucifer.LosslessZoom
             this.rbDefault.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbDefault.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.rbDefault.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.rbDefault.Location = new System.Drawing.Point(176, 180);
+            this.rbDefault.Location = new System.Drawing.Point(176, 224);
             this.rbDefault.MinimumSize = new System.Drawing.Size(1, 1);
             this.rbDefault.Name = "rbDefault";
             this.rbDefault.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
@@ -181,7 +194,7 @@ namespace X.Lucifer.LosslessZoom
             this.rbManual.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbManual.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.rbManual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.rbManual.Location = new System.Drawing.Point(343, 180);
+            this.rbManual.Location = new System.Drawing.Point(343, 224);
             this.rbManual.MinimumSize = new System.Drawing.Size(1, 1);
             this.rbManual.Name = "rbManual";
             this.rbManual.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
@@ -196,7 +209,7 @@ namespace X.Lucifer.LosslessZoom
             this.btnBrowser.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.btnBrowser.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.btnBrowser.Location = new System.Drawing.Point(400, 229);
+            this.btnBrowser.Location = new System.Drawing.Point(400, 273);
             this.btnBrowser.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnBrowser.Name = "btnBrowser";
             this.btnBrowser.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
@@ -223,7 +236,7 @@ namespace X.Lucifer.LosslessZoom
             this.cbxFormat.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.cbxFormat.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.cbxFormat.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cbxFormat.Location = new System.Drawing.Point(176, 137);
+            this.cbxFormat.Location = new System.Drawing.Point(176, 181);
             this.cbxFormat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxFormat.MinimumSize = new System.Drawing.Size(63, 0);
             this.cbxFormat.Name = "cbxFormat";
@@ -237,6 +250,32 @@ namespace X.Lucifer.LosslessZoom
             this.cbxFormat.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cbxFormat.Watermark = "";
             // 
+            // cbxGpu
+            // 
+            this.cbxGpu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.cbxGpu.DataSource = null;
+            this.cbxGpu.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.cbxGpu.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.cbxGpu.FillDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.cbxGpu.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cbxGpu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.cbxGpu.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.cbxGpu.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cbxGpu.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cbxGpu.Location = new System.Drawing.Point(176, 137);
+            this.cbxGpu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbxGpu.MinimumSize = new System.Drawing.Size(63, 0);
+            this.cbxGpu.Name = "cbxGpu";
+            this.cbxGpu.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.cbxGpu.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.cbxGpu.RectDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.cbxGpu.Size = new System.Drawing.Size(290, 29);
+            this.cbxGpu.Style = Sunny.UI.UIStyle.Custom;
+            this.cbxGpu.SymbolSize = 24;
+            this.cbxGpu.TabIndex = 4;
+            this.cbxGpu.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbxGpu.Watermark = "";
+            // 
             // txtOutDir
             // 
             this.txtOutDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -247,7 +286,7 @@ namespace X.Lucifer.LosslessZoom
             this.txtOutDir.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtOutDir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.txtOutDir.ForeDisableColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.txtOutDir.Location = new System.Drawing.Point(69, 229);
+            this.txtOutDir.Location = new System.Drawing.Point(69, 273);
             this.txtOutDir.Margin = new System.Windows.Forms.Padding(0);
             this.txtOutDir.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtOutDir.Multiline = false;
@@ -269,8 +308,9 @@ namespace X.Lucifer.LosslessZoom
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(43)))));
-            this.ClientSize = new System.Drawing.Size(524, 346);
+            this.ClientSize = new System.Drawing.Size(524, 390);
             this.Controls.Add(this.txtOutDir);
+            this.Controls.Add(this.cbxGpu);
             this.Controls.Add(this.cbxFormat);
             this.Controls.Add(this.btnBrowser);
             this.Controls.Add(this.rbManual);
@@ -278,6 +318,7 @@ namespace X.Lucifer.LosslessZoom
             this.Controls.Add(this.cbxModule);
             this.Controls.Add(this.txtAppendExt);
             this.Controls.Add(this.lblOutDir);
+            this.Controls.Add(this.lblGpu);
             this.Controls.Add(this.lblFormat);
             this.Controls.Add(this.lblModule);
             this.Controls.Add(this.lblAppendExt);
@@ -295,10 +336,12 @@ namespace X.Lucifer.LosslessZoom
             this.Controls.SetChildIndex(this.pnlBtm, 0);
             this.Controls.SetChildIndex(this.lblAppendExt, 0);
             this.Controls.SetChildIndex(this.lblModule, 0);
+            this.Controls.SetChildIndex(this.lblGpu, 0);
             this.Controls.SetChildIndex(this.lblFormat, 0);
             this.Controls.SetChildIndex(this.lblOutDir, 0);
             this.Controls.SetChildIndex(this.txtAppendExt, 0);
             this.Controls.SetChildIndex(this.cbxModule, 0);
+            this.Controls.SetChildIndex(this.cbxGpu, 0);
             this.Controls.SetChildIndex(this.rbDefault, 0);
             this.Controls.SetChildIndex(this.rbManual, 0);
             this.Controls.SetChildIndex(this.btnBrowser, 0);
@@ -314,12 +357,14 @@ namespace X.Lucifer.LosslessZoom
         private Sunny.UI.UILabel lblModule;
         private Sunny.UI.UILabel lblFormat;
         private Sunny.UI.UILabel lblOutDir;
+        private Sunny.UI.UILabel lblGpu;
         private Sunny.UI.UITextBox txtAppendExt;
         private Sunny.UI.UIComboBox cbxModule;
         private Sunny.UI.UIRadioButton rbDefault;
         private Sunny.UI.UIRadioButton rbManual;
         private Sunny.UI.UISymbolButton btnBrowser;
         private Sunny.UI.UIComboBox cbxFormat;
+        private Sunny.UI.UIComboBox cbxGpu;
         private Sunny.UI.UIRichTextBox txtOutDir;
     }
 }

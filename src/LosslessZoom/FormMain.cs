@@ -185,6 +185,7 @@ public partial class FormMain : UIForm
             _option.AppendExt = "";
             _option.OutFormat = 1;
             _option.Module = "0";
+            _option.GpuId = "auto";
             _option.Lang = Language.Chinese;
             using var doc = IniSerialization.SerializeObjectToNewDocument(_option);
             doc.Write(file);
@@ -192,6 +193,11 @@ public partial class FormMain : UIForm
 
         using var xdoc = new IniDocument(file);
         _option = IniSerialization.DeserializeDocument<RuntimeOption>(xdoc);
+        if (string.IsNullOrWhiteSpace(_option.GpuId))
+        {
+            _option.GpuId = "auto";
+        }
+
         _pack = _option.Lang == Language.Chinese ? new LangPack() : new LangPackEnglish();
     }
 
@@ -435,7 +441,18 @@ public partial class FormMain : UIForm
         _option.Module = xoption.Module;
         _option.OutFormat = xoption.OutFormat;
         _option.OutDirPath = xoption.OutDirPath;
+        _option.GpuId = xoption.GpuId;
+        UpdateGraphicsDisplay();
         WriteLog(_pack.FormMain_Change_Config);
+    }
+
+    /// <summary>
+    /// 更新主界面显示的 GPU 信息
+    /// </summary>
+    private void UpdateGraphicsDisplay()
+    {
+        var display = GpuEnumerator.GetDisplayName(_pack, _option.GpuId);
+        lblxvideo.BeginInvoke((Action<string>)(x => { lblxvideo.Text = x; }), display);
     }
 
     /// <summary>
@@ -640,7 +657,7 @@ public partial class FormMain : UIForm
         WriteLog(_pack.FormMain_Init_System_Info);
         LoadHardInfo("Win32_Processor", WmiType.WIN32_PROCESSOR, out var processor);
         WriteLog(_pack.FormMain_Init_Cpu_Info);
-        LoadHardInfo("Win32_VideoController", WmiType.WIN32_VIDEO_CONTROLLER, out var video);
+        LoadHardInfo("Win32_VideoController", WmiType.WIN32_VIDEO_CONTROLLER, out _);
         WriteLog(_pack.FormMain_Init_Graphics_Info);
         LoadHardInfo("Win32_OperatingSystem", WmiType.WIN32_OPERATING_SYSTEM, out var os);
         WriteLog(_pack.FormMain_Init_Others_Info);
@@ -659,7 +676,7 @@ public partial class FormMain : UIForm
             processor["NumberOfLogicalProcessors"]?.ToString());
 
         //更新显卡
-        lblxvideo.BeginInvoke((Action<string>) (x => { lblxvideo.Text = x; }), video["Caption"]?.ToString());
+        UpdateGraphicsDisplay();
 
         //更新品牌
         var sysfam = system["SystemFamily"]?.ToString();
@@ -869,8 +886,9 @@ public partial class FormMain : UIForm
                             3 => ".webp",
                             _ => ".jpg"
                         };
+                        var gpuId = string.IsNullOrWhiteSpace(_option.GpuId) ? "auto" : _option.GpuId;
                         var cmd =
-                            $" -i \"{xitem.FullName}\" -o \"{_option.OutDirPath}{xname}{format}\" -n {module} -f {format.Replace(".", "")} -s 4 -g auto -j {thread} -v ";
+                            $" -i \"{xitem.FullName}\" -o \"{_option.OutDirPath}{xname}{format}\" -n {module} -f {format.Replace(".", "")} -s 4 -g {gpuId} -j {thread} -v ";
                         var sinfo = new ProcessStartInfo(ainame, cmd)
                         {
                             CreateNoWindow = true,

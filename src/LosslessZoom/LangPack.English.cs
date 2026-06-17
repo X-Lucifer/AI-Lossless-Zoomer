@@ -68,6 +68,12 @@ public class LangPackEnglish : ILangPack
     public string FormOption_ComboxItem_Default => "Default";
 
     /// <inheritdoc />
+    public string FormOption_lblGpu => "GPU Device:";
+
+    /// <inheritdoc />
+    public string FormOption_ComboxItem_AutoGpu => "Auto";
+
+    /// <inheritdoc />
     public string FormMain_Title => "AI Lossless Zoomer";
 
     /// <inheritdoc />

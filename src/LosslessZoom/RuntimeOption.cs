@@ -34,4 +34,9 @@ public class RuntimeOption
     /// 默认语系
     /// </summary>
     public Language Lang { get; set; } = Language.Chinese;
+
+    /// <summary>
+    /// GPU设备 (auto 或 0,1,2...)
+    /// </summary>
+    public string GpuId { get; set; } = "auto";
 }

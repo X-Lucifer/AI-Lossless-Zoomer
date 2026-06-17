@@ -68,6 +68,13 @@ public partial class FormOption : UIEditForm
         cbxModule.DataSource = list;
         cbxModule.SelectedIndex = list.FindIndex(x => x.Id == _option.Module);
 
+        var gpuList = GpuEnumerator.GetGpuList(_pack);
+        cbxGpu.DisplayMember = nameof(ComboxItem.Name);
+        cbxGpu.ValueMember = nameof(ComboxItem.Id);
+        cbxGpu.DataSource = gpuList;
+        var gpuIndex = gpuList.FindIndex(x => x.Id == (_option.GpuId ?? "auto"));
+        cbxGpu.SelectedIndex = gpuIndex >= 0 ? gpuIndex : 0;
+
         //绑定格式
         var flist = new List<ComboxItem>
         {
@@ -90,6 +97,7 @@ public partial class FormOption : UIEditForm
         Text = _pack.FormOption_Title;
         lblAppendExt.Text = _pack.FormOption_lblAppendExt;
         lblModule.Text = _pack.FormOption_lblModule;
+        lblGpu.Text = _pack.FormOption_lblGpu;
         lblFormat.Text = _pack.FormOption_lblFormat;
         lblOutDir.Text = _pack.FormOption_lblOutDir;
         rbDefault.Text = _pack.FormOption_rbDefault;
@@ -142,6 +150,7 @@ public partial class FormOption : UIEditForm
         {
             AppendExt = regex.Replace(ext, ""),
             Module = cbxModule.SelectedValue.ToString(),
+            GpuId = cbxGpu.SelectedValue?.ToString() ?? "auto",
             OutDir = rbDefault.Checked ? 1 : 2,
             OutDirPath = outdir,
             OutFormat = cbxFormat.SelectedIndex,

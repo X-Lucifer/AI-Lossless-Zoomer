@@ -68,6 +68,12 @@ public class LangPack : ILangPack
     public string FormOption_ComboxItem_Default => "默认";
 
     /// <inheritdoc />
+    public string FormOption_lblGpu => "GPU设备:";
+
+    /// <inheritdoc />
+    public string FormOption_ComboxItem_AutoGpu => "自动";
+
+    /// <inheritdoc />
     public string FormMain_Title => "AI无损放大工具";
 
     /// <inheritdoc />

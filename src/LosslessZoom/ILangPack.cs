@@ -53,6 +53,10 @@ public interface ILangPack
 
     string FormOption_ComboxItem_Default { get; }
 
+    string FormOption_lblGpu { get; }
+
+    string FormOption_ComboxItem_AutoGpu { get; }
+
     #endregion
 
     #region FormMain

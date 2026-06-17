@@ -137,6 +137,7 @@
   <ItemGroup>
     <Compile Include="ApiExtensions.cs" />
     <Compile Include="ComboxItem.cs" />
+    <Compile Include="GpuEnumerator.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
