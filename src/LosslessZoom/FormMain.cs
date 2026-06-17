@@ -198,7 +198,7 @@ public partial class FormMain : UIForm
             _option.GpuId = "auto";
         }
 
-        _pack = _option.Lang == Language.Chinese ? new LangPack() : new LangPackEnglish();
+        _pack = LangPackFactory.Create(_option.Lang);
     }
 
     /// <summary>
@@ -218,7 +218,8 @@ public partial class FormMain : UIForm
                     ]
                 ),
                 new TreeNode("", [
-                    new TreeNode("Chinese"),
+                    new TreeNode("简体中文"),
+                    new TreeNode("繁體中文"),
                     new TreeNode("English")
                 ]),
                 new TreeNode
@@ -289,32 +290,27 @@ public partial class FormMain : UIForm
                 await Exit();
                 break;
             case 4:
-                ChangeLang();
+                ChangeLang(Language.Chinese);
                 break;
             case 5:
-                ChangeLang(Language.English);
+                ChangeLang(Language.TraditionalChinese);
                 break;
             case 6:
-                ShowAbout();
+                ChangeLang(Language.English);
                 break;
             case 7:
+                ShowAbout();
+                break;
+            case 8:
                 ShowCopyright();
                 break;
         }
     }
 
-    private void ChangeLang(Language lang = Language.Chinese)
+    private void ChangeLang(Language lang)
     {
-        if (lang == Language.Chinese)
-        {
-            _pack = new LangPack();
-            this.ShowInfoTip(_pack.FormMain_Change_Lang, 2000);
-        }
-        else
-        {
-            _pack = new LangPackEnglish();
-            this.ShowInfoTip(_pack.FormMain_Change_Lang, 2000);
-        }
+        _pack = LangPackFactory.Create(lang);
+        this.ShowInfoTip(_pack.FormMain_Change_Lang, 2000);
 
         _option.Lang = lang;
         using var doc = IniSerialization.SerializeObjectToNewDocument(_option);

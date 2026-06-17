@@ -104,7 +104,7 @@ public class LangPack : ILangPack
     public string FormMain_Engine_Fail => "AI引擎加载失败.";
 
     /// <inheritdoc />
-    public string FormMain_Change_Lang => "当前界面语言已切换至中文.";
+    public string FormMain_Change_Lang => "当前界面语言已切换至简体中文.";
 
     /// <inheritdoc />
     public string FormMain_Change_Config => "配置更改成功.";

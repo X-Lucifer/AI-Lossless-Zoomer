@@ -177,6 +177,8 @@
     <Compile Include="ILangPack.cs" />
     <Compile Include="LangPack.cs" />
     <Compile Include="LangPack.English.cs" />
+    <Compile Include="LangPack.TraditionalChinese.cs" />
+    <Compile Include="LangPackFactory.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,9 +214,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
-    <None Include="lovestruck.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="nlog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

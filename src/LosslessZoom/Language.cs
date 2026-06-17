@@ -6,12 +6,17 @@ namespace X.Lucifer.LosslessZoom;
 public enum Language
 {
     /// <summary>
-    /// 中文
+    /// 简体中文
     /// </summary>
     Chinese = 0,
 
     /// <summary>
     /// 英文
     /// </summary>
-    English = 1
+    English = 1,
+
+    /// <summary>
+    /// 繁體中文
+    /// </summary>
+    TraditionalChinese = 2
 }
