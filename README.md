@@ -1,29 +1,10 @@
-# AI无损放大工具
+# AI超分辨工具
 
 ## 当前项目由于历史原因, 不再维护, 已采用最新Avalonia和原生C++重写图片处理引擎, 可体验高性能和更美观的界面操作
 ## 已迁移至最新项目: https://github.com/X-Lucifer/X.SuperResolution
 
 ### 说明:
 > 本程序使用了来自腾讯ARC Lab提供的`Real-ESRGAN`模型，目前模型主要来自于人像，能对人像进行一个较快的处理，特别是动漫图片，进行一个很好的放大。
-
-### 功能说明
-1. 支持多线程处理
-2. 支持批量图片处理
-3. 支持设置选项
-4. 支持自定义输出格式和自定义输出路径
-5. 支持AI引擎选择
-6. 支持批量清理任务
-
-### 下载地址:
->[https://github.com/X-Lucifer/AI-Lossless-Zoomer/releases](https://github.com/X-Lucifer/AI-Lossless-Zoomer/releases)
-
-### 系统要求:
-  系统: Windows 7+
-  运行时: .net framework 4.6+
-
-### 版本选择
-1. `.exe`后缀为安装版本, 安装完成即可运行
-2. `.zip`后缀为绿色版, 解压即可运行. 已包含最新AI引擎.
 
 ### 运行截图
   ![](https://cdn.jsdelivr.net/gh/X-Lucifer/AI-Lossless-Zoomer@master/step/1.png)<br/>
